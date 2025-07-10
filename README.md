@@ -223,6 +223,28 @@ $ uv run bandit -r src/
 **Pre-commit hooks** automatically run quality checks on every commit. See
 [CODE_QUALITY.md](CODE_QUALITY.md) for detailed information about all quality tools and workflows.
 
+### Automated Publishing
+
+The project includes automated PyPI publishing via GitHub Actions:
+
+```sh
+# Bump version and trigger automated publishing
+$ python bump_version.py patch  # or minor, major
+$ git push origin main  # Triggers automated publishing
+
+# Or use the convenience script that does everything
+$ python bump_version.py patch --push
+```
+
+The automated workflow:
+
+1. ✅ Runs all quality checks (formatting, linting, type checking, tests)
+2. 📦 Builds and validates the package
+3. 🚀 Publishes to PyPI using trusted publishing
+4. 🏷️ Creates GitHub release with changelog
+
+See [AUTOMATED_PUBLISHING.md](AUTOMATED_PUBLISHING.md) for setup instructions.
+
 ### Project Standards
 
 The project maintains high code quality through:

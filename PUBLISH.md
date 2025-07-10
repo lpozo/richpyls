@@ -1,14 +1,53 @@
 # Publishing to PyPI
 
-This guide explains how to publish the `pyls` package to PyPI.
+This guide explains how to publish the `pyls` package to PyPI, including both automated and manual publishing methods.
 
-## Prerequisites
+## 🤖 Automated Publishing (Recommended)
 
-1. **PyPI Account**: Create accounts on [PyPI](https://pypi.org/account/register/) and [TestPyPI](https://test.pypi.org/account/register/)
-2. **API Tokens**: Generate API tokens for both PyPI and TestPyPI
-3. **Publishing Dependencies**: Install the publishing tools
+### Overview
 
-## Setup
+The project includes automated PyPI publishing via GitHub Actions. When you push a version change to the main branch, the package is automatically:
+
+1. ✅ **Quality checked** (formatting, linting, type checking, tests)
+2. 📦 **Built and validated**
+3. 🚀 **Published to PyPI**
+4. 🏷️ **Tagged and released** on GitHub
+
+### Quick Start
+
+1. **Update the version** in `src/pyls/__init__.py`:
+
+   ```python
+   __version__ = "0.2.0"  # Increment as needed
+   ```
+
+2. **Commit and push** to main:
+
+   ```sh
+   git add src/pyls/__init__.py
+   git commit -m "bump: version 0.2.0"
+   git push origin main
+   ```
+
+3. **Wait for automation** - The GitHub Actions workflow will handle the rest!
+
+### Setup Requirements
+
+#### PyPI Trusted Publishing (Secure - No API tokens needed!)
+
+1. Go to [PyPI Trusted Publishing](https://pypi.org/manage/account/publishing/)
+2. Add a new trusted publisher:
+   - **PyPI Project Name**: `pyls`
+   - **Owner**: `yourusername`
+   - **Repository**: `pyls`
+   - **Workflow**: `publish.yml`
+   - **Environment**: `pypi`
+
+See [AUTOMATED_PUBLISHING.md](AUTOMATED_PUBLISHING.md) for detailed setup instructions.
+
+## 📖 Manual Publishing
+
+For manual publishing or testing purposes:
 
 1. Install publishing dependencies:
 
