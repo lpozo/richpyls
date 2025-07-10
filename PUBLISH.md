@@ -11,8 +11,9 @@ This guide explains how to publish the `pyls` package to PyPI.
 ## Setup
 
 1. Install publishing dependencies:
+
    ```sh
-   $ uv sync --group publish
+   uv sync --group publish
    ```
 
 2. Update your information in `pyproject.toml`:
@@ -48,7 +49,7 @@ $ uv run --group publish python -m twine upload dist/*
 ### 3. Install from PyPI
 
 ```sh
-$ pip install pyls
+pip install pyls
 ```
 
 ## Version Management
@@ -56,13 +57,16 @@ $ pip install pyls
 Before publishing:
 
 1. Update the version in `src/pyls/__init__.py`:
+
    ```python
    __version__ = "0.2.0"  # Update this line
    ```
+
 2. Create a git tag for the release:
+
    ```sh
-   $ git tag v0.2.0
-   $ git push origin v0.2.0
+   git tag v0.2.0
+   git push origin v0.2.0
    ```
 
 ## Package Information
@@ -82,7 +86,8 @@ Use API tokens for authentication:
 ```
 
 Or use environment variables:
+
 ```sh
-$ export TWINE_USERNAME=__token__
-$ export TWINE_PASSWORD=your-api-token
+export TWINE_USERNAME=__token__
+export TWINE_PASSWORD=your-api-token
 ```

@@ -72,10 +72,14 @@ def fixed_metadata(monkeypatch):
     # Use fixed metadata for long listing
     monkeypatch.setattr(stat, "filemode", lambda m: "drwxr-xr-x")
     monkeypatch.setattr(
-        pwd, "getpwuid", lambda uid: type("u", (), {"pw_name": "owner"})()
+        pwd,
+        "getpwuid",
+        lambda uid: type("u", (), {"pw_name": "owner"})(),
     )
     monkeypatch.setattr(
-        grp, "getgrgid", lambda gid: type("g", (), {"gr_name": "group"})()
+        grp,
+        "getgrgid",
+        lambda gid: type("g", (), {"gr_name": "group"})(),
     )
     monkeypatch.setattr(time, "strftime", lambda fmt, tm: "Jan 01 00:00")
 
@@ -232,4 +236,4 @@ def test_main_execution_coverage():
     # The actual __name__ == '__main__' block will be covered when the module
     # is executed directly, but for test coverage we just need to verify
     # the function exists
-    assert hasattr(cli, "__call__")
+    assert callable(cli)

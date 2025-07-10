@@ -1,8 +1,8 @@
-"""
-pyls - A modern, type-annotated Python implementation of the Unix ls command.
+"""pyls - A modern, type-annotated Python implementation of the Unix ls command.
 
-This package provides a command-line utility that mimics the behavior of the Unix ls command,
-implemented in modern Python with type hints and comprehensive error handling.
+This package provides a command-line utility that mimics the behavior of the Unix
+ls command, implemented in modern Python with type hints and comprehensive error
+handling.
 """
 
 __version__ = "0.1.0"

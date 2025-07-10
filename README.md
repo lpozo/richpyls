@@ -5,7 +5,8 @@
 [![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Type Checked: mypy](https://img.shields.io/badge/type%20checked-mypy-blue.svg)](https://mypy.readthedocs.io/)
 
-A modern, type-annotated Python implementation of the Unix `ls` command with support for long format listings and hidden files.
+A modern, type-annotated Python implementation of the Unix `ls` command with support for long format
+listings and hidden files.
 
 ## Features
 
@@ -22,7 +23,7 @@ A modern, type-annotated Python implementation of the Unix `ls` command with sup
 ### From PyPI (Recommended)
 
 ```sh
-$ pip install pyls
+pip install pyls
 ```
 
 Once installed, you can use the `pyls` command anywhere in your terminal.
@@ -32,8 +33,8 @@ Once installed, you can use the `pyls` command anywhere in your terminal.
 1. Clone the repository:
 
    ```sh
-   $ git clone <repository-url>
-   $ cd pyls
+   git clone <repository-url>
+   cd pyls
    ```
 
 2. Install dependencies:
@@ -132,10 +133,16 @@ drwxr-xr-x  4 user staff     128 Dec 01 12:00 tests
 2. Install development dependencies:
 
    ```sh
-   $ uv sync --dev
+   uv sync --dev
    ```
 
-3. Activate the virtual environment:
+3. Set up pre-commit hooks for code quality:
+
+   ```sh
+   uv run pre-commit install
+   ```
+
+4. Activate the virtual environment:
 
    ```sh
    $ source .venv/bin/activate  # On macOS/Linux
@@ -166,7 +173,25 @@ $ uv run mypy src/pyls/
 $ uv run mypy .
 ```
 
-### Code Quality
+### Code Quality and Formatting
+
+The project uses automated code quality tools:
+
+```sh
+# Format code with ruff
+$ uv run ruff format .
+
+# Lint code with ruff
+$ uv run ruff check . --fix
+
+# Security scan with bandit
+$ uv run bandit -r src/
+```
+
+**Pre-commit hooks** automatically run quality checks on every commit. See
+[CODE_QUALITY.md](CODE_QUALITY.md) for detailed information about all quality tools and workflows.
+
+### Project Standards
 
 The project maintains high code quality through:
 
@@ -186,8 +211,8 @@ Contributions are welcome! Here's how you can help:
 5. **Run quality checks**:
 
    ```sh
-   $ uv run python -m pytest  # Run tests
-   $ uv run mypy src/pyls/     # Type check
+   uv run python -m pytest  # Run tests
+   uv run mypy src/pyls/     # Type check
    ```
 
 6. **Commit your changes**: `git commit -m 'Add amazing feature'`
