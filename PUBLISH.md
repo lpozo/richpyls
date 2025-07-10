@@ -11,8 +11,8 @@ This guide explains how to publish the `pyls` package to PyPI.
 ## Setup
 
 1. Install publishing dependencies:
-   ```bash
-   uv sync --group publish
+   ```sh
+   $ uv sync --group publish
    ```
 
 2. Update your information in `pyproject.toml`:
@@ -24,31 +24,31 @@ This guide explains how to publish the `pyls` package to PyPI.
 
 ### 1. Test on TestPyPI (Recommended)
 
-```bash
+```sh
 # Build the package
-uv run --group publish python -m build
+$ uv run --group publish python -m build
 
 # Upload to TestPyPI
-uv run --group publish python -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+$ uv run --group publish python -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 
 # Test installation from TestPyPI
-pip install --index-url https://test.pypi.org/simple/ pyls
+$ pip install --index-url https://test.pypi.org/simple/ pyls
 ```
 
 ### 2. Publish to PyPI
 
-```bash
+```sh
 # Build the package (if not done already)
-uv run --group publish python -m build
+$ uv run --group publish python -m build
 
 # Upload to PyPI
-uv run --group publish python -m twine upload dist/*
+$ uv run --group publish python -m twine upload dist/*
 ```
 
 ### 3. Install from PyPI
 
-```bash
-pip install pyls
+```sh
+$ pip install pyls
 ```
 
 ## Version Management
@@ -60,9 +60,9 @@ Before publishing:
    __version__ = "0.2.0"  # Update this line
    ```
 2. Create a git tag for the release:
-   ```bash
-   git tag v0.2.0
-   git push origin v0.2.0
+   ```sh
+   $ git tag v0.2.0
+   $ git push origin v0.2.0
    ```
 
 ## Package Information
@@ -76,13 +76,13 @@ Before publishing:
 
 Use API tokens for authentication:
 
-```bash
+```sh
 # Configure twine to use your API token
 # Create ~/.pypirc with your tokens
 ```
 
 Or use environment variables:
-```bash
-export TWINE_USERNAME=__token__
-export TWINE_PASSWORD=your-api-token
+```sh
+$ export TWINE_USERNAME=__token__
+$ export TWINE_PASSWORD=your-api-token
 ```

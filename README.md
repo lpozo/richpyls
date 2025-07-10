@@ -21,8 +21,8 @@ A modern, type-annotated Python implementation of the Unix `ls` command with sup
 
 ### From PyPI (Recommended)
 
-```bash
-pip install pyls
+```sh
+$ pip install pyls
 ```
 
 Once installed, you can use the `pyls` command anywhere in your terminal.
@@ -31,34 +31,34 @@ Once installed, you can use the `pyls` command anywhere in your terminal.
 
 1. Clone the repository:
 
-   ```bash
-   git clone <repository-url>
-   cd pyls
+   ```sh
+   $ git clone <repository-url>
+   $ cd pyls
    ```
 
 2. Install dependencies:
 
-   ```bash
+   ```sh
    # Using uv (recommended)
-   uv sync
+   $ uv sync
 
    # Or using pip (install click manually)
-   pip install click
+   $ pip install click
    ```
 
 ## Usage
 
 ### Basic Usage
 
-```bash
+```sh
 # List files in current directory
-pyls
+$ pyls
 
 # List files in specific directory
-pyls /path/to/directory
+$ pyls /path/to/directory
 
 # List multiple files/directories
-pyls file1.txt directory1 file2.txt
+$ pyls file1.txt directory1 file2.txt
 ```
 
 ### Command Options
@@ -71,7 +71,7 @@ pyls file1.txt directory1 file2.txt
 
 ### Examples
 
-```bash
+```sh
 # Basic listing
 $ pyls
 README.md
@@ -131,39 +131,39 @@ drwxr-xr-x  4 user staff     128 Dec 01 12:00 tests
 1. Clone the repository and navigate to the project directory
 2. Install development dependencies:
 
-   ```bash
-   uv sync --dev
+   ```sh
+   $ uv sync --dev
    ```
 
 3. Activate the virtual environment:
 
-   ```bash
-   source .venv/bin/activate  # On macOS/Linux
+   ```sh
+   $ source .venv/bin/activate  # On macOS/Linux
    # or
-   .venv\Scripts\activate     # On Windows
+   $ .venv\Scripts\activate     # On Windows
    ```
 
 ### Running Tests
 
-```bash
+```sh
 # Run all tests
-uv run python -m pytest
+$ uv run python -m pytest
 
 # Run tests with verbose output
-uv run python -m pytest -v
+$ uv run python -m pytest -v
 
 # Run tests with coverage
-uv run python -m pytest --cov=pyls
+$ uv run python -m pytest --cov=pyls
 ```
 
 ### Type Checking
 
-```bash
+```sh
 # Check types with mypy
-uv run mypy src/pyls/
+$ uv run mypy src/pyls/
 
 # Check all Python files
-uv run mypy .
+$ uv run mypy .
 ```
 
 ### Code Quality
@@ -185,9 +185,9 @@ Contributions are welcome! Here's how you can help:
 4. **Add tests**: Ensure your changes are well-tested
 5. **Run quality checks**:
 
-   ```bash
-   uv run python -m pytest  # Run tests
-   uv run mypy src/pyls/     # Type check
+   ```sh
+   $ uv run python -m pytest  # Run tests
+   $ uv run mypy src/pyls/     # Type check
    ```
 
 6. **Commit your changes**: `git commit -m 'Add amazing feature'`
