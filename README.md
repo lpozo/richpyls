@@ -1,6 +1,6 @@
 # LS - A Python Implementation of the Unix `ls` Command
 
-[![Python Version](https://img.shields.io/badge/python-3.9+-blue.svg)](https://python.org)
+[![Python Version](https://img.shields.io/badge/python-3.12+-blue.svg)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Type Checked: mypy](https://img.shields.io/badge/type%20checked-mypy-blue.svg)](https://mypy.readthedocs.io/)
@@ -9,20 +9,27 @@ A modern, type-annotated Python implementation of the Unix `ls` command with sup
 
 ## Table of Contents
 
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-  - [Basic Usage](#basic-usage)
-  - [Command Options](#command-options)
-  - [Examples](#examples)
-- [Technologies](#technologies)
-- [Development](#development)
-  - [Setup](#setup)
-  - [Running Tests](#running-tests)
-  - [Type Checking](#type-checking)
-- [Contributing](#contributing)
-- [License](#license)
-- [Author](#author)
+- [LS - A Python Implementation of the Unix `ls` Command](#ls---a-python-implementation-of-the-unix-ls-command)
+  - [Table of Contents](#table-of-contents)
+  - [Features](#features)
+  - [Installation](#installation)
+    - [Prerequisites](#prerequisites)
+    - [From Source](#from-source)
+  - [Usage](#usage)
+    - [Basic Usage](#basic-usage)
+    - [Command Options](#command-options)
+    - [Examples](#examples)
+  - [Technologies](#technologies)
+  - [Development](#development)
+    - [Setup](#setup)
+    - [Running Tests](#running-tests)
+    - [Type Checking](#type-checking)
+    - [Code Quality](#code-quality)
+  - [Contributing](#contributing)
+    - [Development Guidelines](#development-guidelines)
+  - [License](#license)
+  - [Author](#author)
+  - [Acknowledgments](#acknowledgments)
 
 ## Features
 
@@ -32,13 +39,13 @@ A modern, type-annotated Python implementation of the Unix `ls` command with sup
 - 🏃 **Fast Performance**: Built with modern Python using pathlib for efficient path operations
 - 🎯 **Type Safety**: Fully type-annotated codebase with mypy validation
 - ✅ **Well Tested**: Comprehensive test suite with 100% coverage
-- 🐍 **Modern Python**: Uses Python 3.9+ features and best practices
+- 🐍 **Modern Python**: Uses Python 3.12+ features and best practices
 
 ## Installation
 
 ### Prerequisites
 
-- Python 3.9 or higher
+- Python 3.12 or higher
 - [uv](https://docs.astral.sh/uv/) (recommended) or pip
 
 ### From Source
@@ -54,8 +61,8 @@ A modern, type-annotated Python implementation of the Unix `ls` command with sup
    # Using uv (recommended)
    uv sync
 
-   # Or using pip
-   pip install -r requirements.txt
+   # Or using pip (install click manually)
+   pip install click
    ```
 
 ## Usage
@@ -89,16 +96,16 @@ $ python ls.py
 README.md
 ls.py
 pyproject.toml
-requirements.txt
 tests
+uv.lock
 
 # Long format listing
 $ python ls.py -l
 -rw-r--r--  1 user staff    1234 Dec 01 12:00 README.md
 -rw-r--r--  1 user staff    3287 Dec 01 12:00 ls.py
 -rw-r--r--  1 user staff     249 Dec 01 12:00 pyproject.toml
--rw-r--r--  1 user staff       6 Dec 01 12:00 requirements.txt
 drwxr-xr-x  4 user staff     128 Dec 01 12:00 tests
+-rw-r--r--  1 user staff    9316 Dec 01 12:00 uv.lock
 
 # Show hidden files
 $ python ls.py -a
@@ -109,8 +116,8 @@ $ python ls.py -a
 README.md
 ls.py
 pyproject.toml
-requirements.txt
 tests
+uv.lock
 
 # Long format with hidden files
 $ python ls.py -la
@@ -121,15 +128,15 @@ drwxr-xr-x  7 user staff    224 Dec 01 12:00 .venv
 -rw-r--r--  1 user staff   1234 Dec 01 12:00 README.md
 -rw-r--r--  1 user staff   3287 Dec 01 12:00 ls.py
 -rw-r--r--  1 user staff    249 Dec 01 12:00 pyproject.toml
--rw-r--r--  1 user staff      6 Dec 01 12:00 requirements.txt
 drwxr-xr-x  4 user staff    128 Dec 01 12:00 tests
+-rw-r--r--  1 user staff   9316 Dec 01 12:00 uv.lock
 ```
 
 ## Technologies
 
 This project uses the following technologies and libraries:
 
-- **[Python 3.9+](https://python.org)**: Modern Python with type hints and advanced features
+- **[Python 3.12+](https://python.org)**: Modern Python with type hints and advanced features
 - **[pathlib](https://docs.python.org/3/library/pathlib.html)**: Object-oriented filesystem paths (built-in)
 - **[click](https://click.palletsprojects.com/)**: Command-line interface creation toolkit
 - **[pytest](https://pytest.org/)**: Testing framework for comprehensive test coverage
