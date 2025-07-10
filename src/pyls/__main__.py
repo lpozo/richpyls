@@ -9,7 +9,8 @@ from pathlib import Path
 import click
 
 
-@click.command()
+@click.command("pyls", epilog="Thanks for using pyls!")
+@click.version_option("0.1.0")
 @click.option(
     "-l",
     "long",

@@ -1,6 +1,6 @@
-# LS - A Python Implementation of the Unix `ls` Command
+# pyls - A Python Implementation of the Unix `ls` Command
 
-[![Python Version](https://img.shields.io/badge/python-3.12+-blue.svg)](https://python.org)
+[![Python Version](https://img.shields.io/badge/python-3.13+-blue.svg)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Type Checked: mypy](https://img.shields.io/badge/type%20checked-mypy-blue.svg)](https://mypy.readthedocs.io/)
@@ -15,24 +15,29 @@ A modern, type-annotated Python implementation of the Unix `ls` command with sup
 - 🏃 **Fast Performance**: Built with modern Python using pathlib for efficient path operations
 - 🎯 **Type Safety**: Fully type-annotated codebase with mypy validation
 - ✅ **Well Tested**: Comprehensive test suite with 100% coverage
-- 🐍 **Modern Python**: Uses Python 3.12+ features and best practices
+- 🐍 **Modern Python**: Uses Python 3.13+ features and best practices
 
 ## Installation
 
-### Prerequisites
+### From PyPI (Recommended)
 
-- Python 3.12 or higher
-- [uv](https://docs.astral.sh/uv/) (recommended) or pip
+```bash
+pip install pyls
+```
+
+Once installed, you can use the `pyls` command anywhere in your terminal.
 
 ### From Source
 
 1. Clone the repository:
+
    ```bash
    git clone <repository-url>
-   cd codex_test
+   cd pyls
    ```
 
 2. Install dependencies:
+
    ```bash
    # Using uv (recommended)
    uv sync
@@ -47,13 +52,13 @@ A modern, type-annotated Python implementation of the Unix `ls` command with sup
 
 ```bash
 # List files in current directory
-python ls.py
+pyls
 
 # List files in specific directory
-python ls.py /path/to/directory
+pyls /path/to/directory
 
 # List multiple files/directories
-python ls.py file1.txt directory1 file2.txt
+pyls file1.txt directory1 file2.txt
 ```
 
 ### Command Options
@@ -68,44 +73,41 @@ python ls.py file1.txt directory1 file2.txt
 
 ```bash
 # Basic listing
-$ python ls.py
+$ pyls
 README.md
-ls.py
 pyproject.toml
+src
 tests
 uv.lock
 
 # Long format listing
-$ python ls.py -l
+$ pyls -l
 -rw-r--r--  1 user staff    1234 Dec 01 12:00 README.md
--rw-r--r--  1 user staff    3287 Dec 01 12:00 ls.py
 -rw-r--r--  1 user staff     249 Dec 01 12:00 pyproject.toml
+drwxr-xr-x  3 user staff      96 Dec 01 12:00 src
 drwxr-xr-x  4 user staff     128 Dec 01 12:00 tests
 -rw-r--r--  1 user staff    9316 Dec 01 12:00 uv.lock
 
 # Show hidden files
-$ python ls.py -a
+$ pyls -a
 .git
 .gitignore
 .python-version
 .venv
 README.md
-ls.py
 pyproject.toml
+src
 tests
 uv.lock
 
 # Long format with hidden files
-$ python ls.py -la
+$ pyls -la
 drwxr-xr-x 12 user staff    384 Dec 01 12:00 .git
--rw-r--r--  1 user staff    109 Dec 01 12:00 .gitignore
--rw-r--r--  1 user staff      5 Dec 01 12:00 .python-version
-drwxr-xr-x  7 user staff    224 Dec 01 12:00 .venv
--rw-r--r--  1 user staff   1234 Dec 01 12:00 README.md
--rw-r--r--  1 user staff   3287 Dec 01 12:00 ls.py
--rw-r--r--  1 user staff    249 Dec 01 12:00 pyproject.toml
-drwxr-xr-x  4 user staff    128 Dec 01 12:00 tests
--rw-r--r--  1 user staff   9316 Dec 01 12:00 uv.lock
+-rw-r--r--  1 user staff    1234 Dec 01 12:00 README.md
+-rw-r--r--  1 user staff     249 Dec 01 12:00 pyproject.toml
+drwxr-xr-x  3 user staff      96 Dec 01 12:00 src
+drwxr-xr-x  4 user staff     128 Dec 01 12:00 tests
+-rw-r--r--  1 user staff    9316 Dec 01 12:00 uv.lock
 ```
 
 ## Technologies
@@ -128,11 +130,13 @@ drwxr-xr-x  4 user staff    128 Dec 01 12:00 tests
 
 1. Clone the repository and navigate to the project directory
 2. Install development dependencies:
+
    ```bash
    uv sync --dev
    ```
 
 3. Activate the virtual environment:
+
    ```bash
    source .venv/bin/activate  # On macOS/Linux
    # or
@@ -149,14 +153,14 @@ uv run python -m pytest
 uv run python -m pytest -v
 
 # Run tests with coverage
-uv run python -m pytest --cov=ls
+uv run python -m pytest --cov=pyls
 ```
 
 ### Type Checking
 
 ```bash
 # Check types with mypy
-uv run mypy ls.py
+uv run mypy src/pyls/
 
 # Check all Python files
 uv run mypy .
@@ -180,10 +184,12 @@ Contributions are welcome! Here's how you can help:
 3. **Make your changes**: Implement your feature or bug fix
 4. **Add tests**: Ensure your changes are well-tested
 5. **Run quality checks**:
+
    ```bash
    uv run python -m pytest  # Run tests
-   uv run mypy ls.py        # Type check
+   uv run mypy src/pyls/     # Type check
    ```
+
 6. **Commit your changes**: `git commit -m 'Add amazing feature'`
 7. **Push to the branch**: `git push origin feature/amazing-feature`
 8. **Open a Pull Request**
@@ -202,7 +208,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Author
 
-**Leodanis Pozo Ramos**
+### Leodanis Pozo Ramos
 
 - Email: [your-email@example.com](mailto:your-email@example.com)
 - GitHub: [@yourusername](https://github.com/yourusername)

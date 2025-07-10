@@ -1,15 +1,77 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
-name = "codex-test"
-version = "0.1.0"
-description = "Add your description here"
+name = "pyls"
+dynamic = ["version"]
+description = "A modern, type-annotated Python implementation of the Unix ls command"
 readme = "README.md"
+license = "MIT"
 requires-python = ">=3.13"
+authors = [
+    { name = "Leodanis Pozo Ramos", email = "lpozor78@gmail.com" },
+]
+maintainers = [
+    { name = "Leodanis Pozo Ramos", email = "lpozor78@gmail.com" },
+]
+keywords = [
+    "ls",
+    "unix",
+    "cli",
+    "file-listing",
+    "directory",
+    "command-line",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: System :: Filesystems",
+    "Topic :: Utilities",
+    "Typing :: Typed",
+]
 dependencies = [
     "click>=8.2.1",
 ]
+
+[project.urls]
+"Homepage" = "https://github.com/yourusername/pyls"
+"Bug Reports" = "https://github.com/yourusername/pyls/issues"
+"Source" = "https://github.com/yourusername/pyls"
+"Documentation" = "https://github.com/yourusername/pyls#readme"
+
+[project.scripts]
+pyls = "pyls:cli"
 
 [dependency-groups]
 dev = [
     "mypy>=1.16.1",
     "pytest>=8.4.1",
+    "pytest-cov>=6.2.1",
+]
+publish = [
+    "build>=1.0.0",
+    "twine>=4.0.0",
+]
+
+[tool.hatch.version]
+path = "src/pyls/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pyls"]
+sources = ["src"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/",
+    "README.md",
+    "LICENSE",
+    "tests/",
 ]
