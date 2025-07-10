@@ -7,25 +7,6 @@
 
 A modern, type-annotated Python implementation of the Unix `ls` command with support for long format listings and hidden files.
 
-## Table of Contents
-
-- [Features](#features)
-- [Installation](#installation)
-  - [Prerequisites](#prerequisites)
-  - [From Source](#from-source)
-- [Usage](#usage)
-  - [Basic Usage](#basic-usage)
-  - [Command Options](#command-options)
-  - [Examples](#examples)
-- [Technologies](#technologies)
-- [Development](#development)
-  - [Setup](#setup)
-  - [Running Tests](#running-tests)
-  - [Type Checking](#type-checking)
-- [Contributing](#contributing)
-- [License](#license)
-- [Author](#author)
-
 ## Features
 
 - 📁 **Directory Listing**: List files and directories in the current or specified path
@@ -129,11 +110,14 @@ drwxr-xr-x  4 user staff    128 Dec 01 12:00 tests
 
 ## Technologies
 
-This project uses the following technologies and libraries:
+### Runtime Dependencies
 
-- **[Python 3.12+](https://python.org)**: Modern Python with type hints and advanced features
+- **[Python 3.13+](https://python.org)**: Modern Python with type hints and advanced features
 - **[pathlib](https://docs.python.org/3/library/pathlib.html)**: Object-oriented filesystem paths (built-in)
 - **[click](https://click.palletsprojects.com/)**: Command-line interface creation toolkit
+
+### Development Dependencies
+
 - **[pytest](https://pytest.org/)**: Testing framework for comprehensive test coverage
 - **[mypy](https://mypy.readthedocs.io/)**: Static type checker for Python
 - **[uv](https://docs.astral.sh/uv/)**: Fast Python package manager and resolver
@@ -218,7 +202,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Author
 
-**Leo Danis Pozo Ramos**
+**Leodanis Pozo Ramos**
 
 - Email: [your-email@example.com](mailto:your-email@example.com)
 - GitHub: [@yourusername](https://github.com/yourusername)
