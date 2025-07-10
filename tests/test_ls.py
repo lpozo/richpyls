@@ -1,8 +1,8 @@
-import os
 import stat
 import pwd
 import grp
 import time
+from pathlib import Path
 
 import pytest
 from click.testing import CliRunner
@@ -82,9 +82,9 @@ def test_long_single_file(tmp_path, monkeypatch):
     file_path = tmp_path / 'file.txt'
     file_path.write_text('content')
 
-    # Ensure lstat returns fixed dummy
+    # Ensure lstat returns fixed dummy - mock the Path.lstat method
     dummy = DummyStat(mode=0, nlink=3, uid=1000, gid=1000, size=7, mtime=0)
-    monkeypatch.setattr(os, 'lstat', lambda path: dummy)
+    monkeypatch.setattr(Path, 'lstat', lambda self: dummy)
 
     runner = CliRunner()
     result = runner.invoke(cli, ['-l', 'file.txt'])
@@ -101,9 +101,9 @@ def test_long_directory(tmp_path, monkeypatch):
     (d / 'a').write_text('x')
     (d / 'b').write_text('y')
 
-    # Dummy stat for each entry
+    # Dummy stat for each entry - mock the Path.lstat method
     dummy = DummyStat(mode=0, nlink=1, uid=1000, gid=1000, size=1, mtime=0)
-    monkeypatch.setattr(os, 'lstat', lambda path: dummy)
+    monkeypatch.setattr(Path, 'lstat', lambda self: dummy)
 
     runner = CliRunner()
     result = runner.invoke(cli, ['-l', 'd'])
