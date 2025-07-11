@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "pyls"
 dynamic = ["version"]
-description = "A modern, type-annotated Python implementation of the Unix ls command with tree view support"
+description = "A modern, type-annotated Python implementation of the Unix ls command with beautiful Rich formatting and color-coded file types"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.13"
