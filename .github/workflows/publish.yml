@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
     paths:
-      - 'src/pyls/__init__.py'  # Only trigger on version changes
+      - 'src/richpyls/__init__.py'  # Only trigger on version changes
   workflow_dispatch:  # Allow manual triggering
     inputs:
       force_publish:
@@ -51,11 +51,11 @@ jobs:
 
     - name: Type check with mypy
       run: |
-        uv run mypy src/pyls/
+        uv run mypy src/richpyls/
 
     - name: Run tests with coverage
       run: |
-        uv run python -m pytest --cov=pyls --cov-report=xml --cov-report=term-missing
+        uv run python -m pytest --cov=richpyls --cov-report=xml --cov-report=term-missing
 
   # Get version information
   version-check:
@@ -83,7 +83,7 @@ jobs:
         CURRENT_VERSION=$(python -c "
         import sys
         sys.path.insert(0, 'src')
-        from pyls import __version__
+        from richpyls import __version__
         print(__version__)
         ")
         echo "version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
@@ -98,8 +98,8 @@ jobs:
           echo "Forced publish requested"
         elif [ "${{ github.event_name }}" = "push" ]; then
           # For push events, check if version changed
-          if git diff HEAD~1 HEAD --name-only | grep -q "src/pyls/__init__.py"; then
-            if git diff HEAD~1 HEAD src/pyls/__init__.py | grep -q "__version__"; then
+          if git diff HEAD~1 HEAD --name-only | grep -q "src/richpyls/__init__.py"; then
+            if git diff HEAD~1 HEAD src/richpyls/__init__.py | grep -q "__version__"; then
               SHOULD_PUBLISH="true"
               echo "Version changed, will publish"
             fi
@@ -116,7 +116,7 @@ jobs:
     if: needs.version-check.outputs.should-publish == 'true'
     environment:
       name: pypi
-      url: https://pypi.org/p/pyls
+      url: https://pypi.org/p/richpyls
 
     steps:
     - name: Checkout code
@@ -170,7 +170,7 @@ jobs:
 
           ### 📦 Installation
           ```sh
-          pip install pyls==${{ needs.version-check.outputs.version }}
+          pip install richpyls==${{ needs.version-check.outputs.version }}
           ```
 
           ### ✅ Quality Assurance
@@ -182,7 +182,7 @@ jobs:
           - ✅ Test suite (99% coverage)
 
           ### 🔗 Links
-          - [PyPI Package](https://pypi.org/project/pyls/${{ needs.version-check.outputs.version }}/)
+          - [PyPI Package](https://pypi.org/project/richpyls/${{ needs.version-check.outputs.version }}/)
           - [Documentation](https://github.com/${{ github.repository }}#readme)
           - [Changelog](https://github.com/${{ github.repository }}/commits/v${{ needs.version-check.outputs.version }})
 
