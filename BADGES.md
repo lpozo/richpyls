@@ -34,13 +34,13 @@ This document describes all the badges used in the README.md and their purposes.
 
 ## Badge URLs
 
-**Note**: Replace `yourusername/pyls` with your actual GitHub repository path.
+**Note**: Replace `lpozo/pyls` with your actual GitHub repository path if different.
 
 ### Primary Badges (Top of README)
 
 ```markdown
-[![CI/CD Pipeline](https://img.shields.io/github/actions/workflow/status/yourusername/pyls/ci.yml?branch=main&label=CI%2FCD&logo=github)](https://github.com/yourusername/pyls/actions)
-[![Test Coverage](https://img.shields.io/codecov/c/github/yourusername/pyls?logo=codecov)](https://codecov.io/gh/yourusername/pyls)
+[![CI/CD Pipeline](https://img.shields.io/github/actions/workflow/status/lpozo/pyls/ci.yml?branch=main&label=CI%2FCD&logo=github)](https://github.com/lpozo/pyls/actions)
+[![Test Coverage](https://img.shields.io/codecov/c/github/lpozo/pyls?logo=codecov)](https://codecov.io/gh/lpozo/pyls)
 [![Python Version](https://img.shields.io/badge/python-3.13+-blue.svg)](https://python.org)
 [![PyPI Version](https://img.shields.io/pypi/v/pyls?logo=pypi)](https://pypi.org/project/pyls/)
 [![PyPI Downloads](https://img.shields.io/pypi/dm/pyls?logo=pypi)](https://pypi.org/project/pyls/)
@@ -92,7 +92,7 @@ Most badges include relevant logos (github, pypi, codecov, pytest, etc.) for bet
 
 ## Maintenance
 
-1. **Repository URLs**: Update all `yourusername/pyls` references when repository is published
+1. **Repository URLs**: Update all `lpozo/pyls` references when repository is published
 2. **Package Name**: Update `pyls` references if package name changes
 3. **Workflow Names**: Ensure workflow file names match badge URLs
 4. **Version Numbers**: PyPI badges update automatically when new versions are published
@@ -103,8 +103,8 @@ Most badges include relevant logos (github, pypi, codecov, pytest, etc.) for bet
 Additional badges that could be added:
 
 ```markdown
-[![GitHub Issues](https://img.shields.io/github/issues/yourusername/pyls)](https://github.com/yourusername/pyls/issues)
-[![GitHub Stars](https://img.shields.io/github/stars/yourusername/pyls)](https://github.com/yourusername/pyls/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/yourusername/pyls)](https://github.com/yourusername/pyls/network)
-[![Contributors](https://img.shields.io/github/contributors/yourusername/pyls)](https://github.com/yourusername/pyls/graphs/contributors)
+[![GitHub Issues](https://img.shields.io/github/issues/lpozo/pyls)](https://github.com/lpozo/pyls/issues)
+[![GitHub Stars](https://img.shields.io/github/stars/lpozo/pyls)](https://github.com/lpozo/pyls/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/lpozo/pyls)](https://github.com/lpozo/pyls/network)
+[![Contributors](https://img.shields.io/github/contributors/lpozo/pyls)](https://github.com/lpozo/pyls/graphs/contributors)
 ```

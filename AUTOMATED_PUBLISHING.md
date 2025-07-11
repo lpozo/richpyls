@@ -23,7 +23,7 @@ The automated publication system will:
 1. **Go to PyPI**: <https://pypi.org/manage/account/publishing/>
 2. **Add a new trusted publisher** with these details:
    - **PyPI Project Name**: `pyls`
-   - **Owner**: `yourusername` (your GitHub username)
+   - **Owner**: `lpozo` (your GitHub username)
    - **Repository name**: `pyls`
    - **Workflow filename**: `publish.yml`
    - **Environment name**: `pypi` (optional but recommended)

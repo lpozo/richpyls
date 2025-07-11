@@ -42,10 +42,10 @@ dependencies = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/yourusername/pyls"
-"Bug Reports" = "https://github.com/yourusername/pyls/issues"
-"Source" = "https://github.com/yourusername/pyls"
-"Documentation" = "https://github.com/yourusername/pyls#readme"
+"Homepage" = "https://github.com/lpozo/pyls"
+"Bug Reports" = "https://github.com/lpozo/pyls/issues"
+"Source" = "https://github.com/lpozo/pyls"
+"Documentation" = "https://github.com/lpozo/pyls#readme"
 
 [project.scripts]
 pyls = "pyls:cli"

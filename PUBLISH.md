@@ -6,7 +6,8 @@ This guide explains how to publish the `pyls` package to PyPI, including both au
 
 ### Overview
 
-The project includes automated PyPI publishing via GitHub Actions. When you push a version change to the main branch, the package is automatically:
+The project includes automated PyPI publishing via GitHub Actions. When you push a version change to the
+main branch, the package is automatically:
 
 1. ✅ **Quality checked** (formatting, linting, type checking, tests)
 2. 📦 **Built and validated**
@@ -38,7 +39,7 @@ The project includes automated PyPI publishing via GitHub Actions. When you push
 1. Go to [PyPI Trusted Publishing](https://pypi.org/manage/account/publishing/)
 2. Add a new trusted publisher:
    - **PyPI Project Name**: `pyls`
-   - **Owner**: `yourusername`
+   - **Owner**: `lpozo`
    - **Repository**: `pyls`
    - **Workflow**: `publish.yml`
    - **Environment**: `pypi`

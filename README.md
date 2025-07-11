@@ -1,7 +1,7 @@
 # pyls - A Python Implementation of the Unix `ls` Command
 
-[![CI/CD Pipeline](https://img.shields.io/github/actions/workflow/status/yourusername/pyls/ci.yml?branch=main&label=CI%2FCD&logo=github)](https://github.com/yourusername/pyls/actions)
-[![Test Coverage](https://img.shields.io/codecov/c/github/yourusername/pyls?logo=codecov)](https://codecov.io/gh/yourusername/pyls)
+[![CI/CD Pipeline](https://img.shields.io/github/actions/workflow/status/lpozo/pyls/ci.yml?branch=main&label=CI%2FCD&logo=github)](https://github.com/lpozo/pyls/actions)
+[![Test Coverage](https://img.shields.io/codecov/c/github/lpozo/pyls?logo=codecov)](https://codecov.io/gh/lpozo/pyls)
 [![Python Version](https://img.shields.io/badge/python-3.13+-blue.svg)](https://python.org)
 [![PyPI Version](https://img.shields.io/pypi/v/pyls?logo=pypi)](https://pypi.org/project/pyls/)
 [![PyPI Downloads](https://img.shields.io/pypi/dm/pyls?logo=pypi)](https://pypi.org/project/pyls/)
@@ -17,14 +17,14 @@ listings and hidden files.
 
 ## Quality Metrics
 
-![Lines of Code](https://img.shields.io/tokei/lines/github/yourusername/pyls?style=flat-square)
-![Code Size](https://img.shields.io/github/languages/code-size/yourusername/pyls?style=flat-square)
-![Repo Size](https://img.shields.io/github/repo-size/yourusername/pyls?style=flat-square)
-![Last Commit](https://img.shields.io/github/last-commit/yourusername/pyls?style=flat-square)
+![Lines of Code](https://img.shields.io/tokei/lines/github/lpozo/pyls?style=flat-square)
+![Code Size](https://img.shields.io/github/languages/code-size/lpozo/pyls?style=flat-square)
+![Repo Size](https://img.shields.io/github/repo-size/lpozo/pyls?style=flat-square)
+![Last Commit](https://img.shields.io/github/last-commit/lpozo/pyls?style=flat-square)
 
 | Metric | Value | Status |
 |--------|-------|--------|
-| Test Coverage | 99% | [![Coverage Status](https://img.shields.io/badge/coverage-99%25-brightgreen.svg)](https://codecov.io/gh/yourusername/pyls) |
+| Test Coverage | 99% | [![Coverage Status](https://img.shields.io/badge/coverage-99%25-brightgreen.svg)](https://codecov.io/gh/lpozo/pyls) |
 | Type Coverage | 100% | [![mypy](https://img.shields.io/badge/mypy-100%25-brightgreen.svg)](https://mypy.readthedocs.io/) |
 | Code Quality | A+ | [![Ruff](https://img.shields.io/badge/ruff-passing-brightgreen.svg)](https://github.com/astral-sh/ruff) |
 | Security Scan | Clean | [![Bandit](https://img.shields.io/badge/bandit-passing-brightgreen.svg)](https://github.com/PyCQA/bandit) |
@@ -152,8 +152,8 @@ drwxr-xr-x  4 user staff     128 Dec 01 12:00 tests
 
 ### Build & Deployment
 
-![Build Status](https://img.shields.io/github/actions/workflow/status/yourusername/pyls/ci.yml?branch=main&label=Build&logo=github)
-![Tests](https://img.shields.io/github/actions/workflow/status/yourusername/pyls/ci.yml?branch=main&label=Tests&logo=pytest)
+![Build Status](https://img.shields.io/github/actions/workflow/status/lpozo/pyls/ci.yml?branch=main&label=Build&logo=github)
+![Tests](https://img.shields.io/github/actions/workflow/status/lpozo/pyls/ci.yml?branch=main&label=Tests&logo=pytest)
 ![PyPI Status](https://img.shields.io/pypi/status/pyls?logo=pypi)
 ![Wheel](https://img.shields.io/pypi/wheel/pyls?logo=pypi)
 
@@ -290,7 +290,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ### Leodanis Pozo Ramos
 
 - Email: [lpozor78@gmail.com](mailto:lpozor78@gmail.com)
-- GitHub: [@yourusername](https://github.com/yourusername)
+- GitHub: [@lpozo](https://github.com/lpozo)
 - LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
 
 ---
