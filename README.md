@@ -39,6 +39,7 @@ color-coded file types, and support for long format listings and hidden files.
 - 📄 **Long Format**: Display detailed file information in a professional table format
 - 🌳 **Tree View**: Display directories in a tree-like hierarchical format with the `-t` option
 - 🔍 **Hidden Files**: Show hidden files (starting with `.`) with the `-a` option using 🫣 emoji
+- 📊 **Size Sorting**: Show top N largest files/directories sorted by size with the `-s` option
 - 🏃 **Fast Performance**: Built with modern Python using pathlib for efficient path operations
 - 🎯 **Type Safety**: Fully type-annotated codebase with mypy validation
 - ✅ **Well Tested**: Comprehensive test suite with 89% coverage
@@ -124,9 +125,11 @@ richpyls file1.txt directory1 file2.txt
 | `-l` | Use long listing format (shows permissions, ownership, size, date in Rich table) |
 | `-a` | Show all files, including hidden files (starting with `.`) with 🫣 emoji |
 | `-t` | Display directories in a tree-like format with Rich styling |
+| `-s N` | Show top N files/directories sorted by size (descending) in a Rich table |
 | `-la` | Combine long format with showing hidden files |
 | `-tl` | Combine tree format with long listing |
 | `-ta` | Combine tree format with showing hidden files |
+| `-sa` | Combine size sorting with showing hidden files |
 
 ### Examples
 
@@ -163,6 +166,28 @@ richpyls -t
 │   ├── 🐍 __init__.py
 │   └── 🐍 test_richpyls.py
 └── 📄 uv.lock
+
+# Size-sorted listing (shows top N largest files/directories in Rich table)
+richpyls -s 5
+┏━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓
+┃      Type      ┃ Name                                      ┃                 Size ┃
+┡━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━┩
+│      DIR       │ 📁 .venv                                  │              100.4MB │
+│      DIR       │ 📁 .mypy_cache                            │               25.3MB │
+│      DIR       │ 📁 .git                                   │              529.5KB │
+│      DIR       │ 📁 tests                                  │              283.3KB │
+│      DIR       │ 📁 htmlcov                                │              192.5KB │
+└────────────────┴───────────────────────────────────────────┴──────────────────────┘
+
+# Size-sorted listing with hidden files
+richpyls -s 3 -a
+┏━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓
+┃      Type      ┃ Name                                      ┃                 Size ┃
+┡━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━┩
+│      DIR       │ 📁 .venv                                  │              100.4MB │
+│      DIR       │ 📁 .mypy_cache                            │               25.3MB │
+│      DIR       │ 📁 .git                                   │              529.5KB │
+└────────────────┴───────────────────────────────────────────┴──────────────────────┘
 
 # Tree format with long listing and Rich table
 richpyls -tl src
