@@ -153,6 +153,7 @@ ignore = [
     "TD003",  # Missing issue link on the line following this TODO
     "FIX002", # Line contains TODO, consider resolving the issue
     "COM812", # Trailing comma missing (conflicts with formatter)
+    "ISC001", # Implicitly concatenated string literals (conflicts with formatter)
     "PLR0913", # Too many arguments in function definition
     "ARG001", # Unused function argument
     "ARG005", # Unused lambda argument
