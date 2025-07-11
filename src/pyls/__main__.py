@@ -44,7 +44,7 @@ def get_file_style_and_icon(path: Path) -> tuple[str, str]:
     if path.stat().st_mode & stat.S_IXUSR:  # Executable
         return "bold green", "⚡"
     if path.name.startswith("."):  # Hidden files
-        return "dim white", "👻"
+        return "dim white", "🫣"
 
     # Check file extension
     extension = path.suffix.lower()

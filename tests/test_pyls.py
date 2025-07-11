@@ -26,7 +26,7 @@ def test_default_and_show_all(tmp_path, monkeypatch):
     # Show all: include hidden files
     result = runner.invoke(cli, ["-a"])
     assert result.exit_code == 0
-    assert result.output.splitlines() == ["👻 .hidden", "📄 a.txt", "📄 b.txt"]
+    assert result.output.splitlines() == ["🫣 .hidden", "📄 a.txt", "📄 b.txt"]
 
 
 def test_multiple_paths_prints_headers(tmp_path, monkeypatch):
@@ -344,7 +344,7 @@ def test_file_type_detection_and_icons(tmp_path, monkeypatch):
     assert "📦 archive.zip" in output  # Archive file
     assert "🖼️ image.png" in output  # Image file
     assert "⚡ executable" in output  # Executable file
-    assert "👻 .hidden_file" in output  # Hidden file
+    assert "🫣 .hidden_file" in output  # Hidden file
 
 
 def test_size_formatting_edge_cases():
