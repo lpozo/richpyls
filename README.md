@@ -64,7 +64,7 @@ The Rich output includes beautiful emoji icons for different file types:
 
 ```sh
 # Install from PyPI
-pip install `richpyls`
+pip install richpyls
 ```
 
 Once installed, you can use the `richpyls` command anywhere in your terminal.
@@ -92,13 +92,13 @@ source .venv/bin/activate  # On macOS/Linux
    ```sh
    # Clone the repository
    git clone https://github.com/lpozo/richpyls.git
-   cd `richpyls`
+   cd richpyls
 
    # Install with uv
    uv sync
 
    # Run the application
-   uv run `richpyls`
+   uv run richpyls
    ```
 
 2. **Using pip**:
@@ -106,7 +106,7 @@ source .venv/bin/activate  # On macOS/Linux
    ```sh
    # Clone the repository
    git clone https://github.com/lpozo/richpyls.git
-   cd `richpyls`
+   cd richpyls
 
    # Install dependencies
    pip install rich click
@@ -115,7 +115,7 @@ source .venv/bin/activate  # On macOS/Linux
    pip install -e .
 
    # Run the application
-   `richpyls`
+   richpyls
    ```
 
 ## Usage
@@ -124,13 +124,13 @@ source .venv/bin/activate  # On macOS/Linux
 
 ```sh
 # List files in current directory
-`richpyls`
+richpyls
 
 # List files in specific directory
-`richpyls` /path/to/directory
+richpyls /path/to/directory
 
 # List multiple files/directories
-`richpyls` file1.txt directory1 file2.txt
+richpyls file1.txt directory1 file2.txt
 ```
 
 ### Command Options
@@ -148,7 +148,7 @@ source .venv/bin/activate  # On macOS/Linux
 
 ```sh
 # Basic listing with Rich icons and colors
-`richpyls`
+richpyls
 📄 README.md
 ⚙️ pyproject.toml
 📁 src
@@ -156,7 +156,7 @@ source .venv/bin/activate  # On macOS/Linux
 📄 uv.lock
 
 # Show hidden files with special emoji
-`richpyls` -a
+richpyls -a
 🫣 .git
 🫣 .gitignore
 🫣 .python-version
@@ -168,7 +168,7 @@ source .venv/bin/activate  # On macOS/Linux
 📄 uv.lock
 
 # Tree format (shows directory structure with Rich styling)
-`richpyls` -t
+richpyls -t
 ├── 📄 README.md
 ├── ⚙️ pyproject.toml
 ├── 📁 src
@@ -181,7 +181,7 @@ source .venv/bin/activate  # On macOS/Linux
 └── 📄 uv.lock
 
 # Tree format with long listing and Rich table
-`richpyls` -tl src
+richpyls -tl src
 └── drwxr-xr-x  5 leodanispozoramos staff     160B Jul 11 18:34 📁 richpyls
     ├── drwxr-xr-x  4 leodanispozoramos staff     128B Jul 11 18:34 📁 __pycache__
     │   ├── -rw-r--r--  1 leodanispozoramos staff     622B Jul 11 18:34 📄 __init__.cpython-313.pyc
@@ -227,7 +227,7 @@ Contributions are welcome! Here's how you can set up the development environment
 
    ```sh
    git clone https://github.com/lpozo/richpyls.git
-   cd `richpyls`
+   cd richpyls
    ```
 
 2. **Create and activate a virtual environment**:
@@ -261,14 +261,14 @@ uv run python -m pytest
 uv run python -m pytest -v
 
 # Run tests with coverage
-uv run python -m pytest --cov=`richpyls`
+uv run python -m pytest --cov=richpyls
 ```
 
 ### Type Checking
 
 ```sh
 # Check types with mypy
-uv run mypy src/`richpyls`/
+uv run mypy src/richpyls/
 
 # Check all Python files
 uv run mypy .
@@ -300,7 +300,7 @@ uv run bandit -r src/
 
    ```sh
    uv run python -m pytest          # Run tests
-   uv run mypy src/`richpyls`/        # Type check
+   uv run mypy src/richpyls/        # Type check
    uv run ruff format .             # Format code
    uv run ruff check .              # Lint code
    ```
