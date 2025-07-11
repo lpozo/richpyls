@@ -24,13 +24,13 @@ color-coded file types, and support for long format listings and hidden files.
 ![Repo Size](https://img.shields.io/github/repo-size/lpozo/richpyls?style=flat-square)
 ![Last Commit](https://img.shields.io/github/last-commit/lpozo/richpyls?style=flat-square)
 
-| Metric | Value | Status |
-|--------|-------|--------|
-| Test Coverage | 89% | ![Coverage Status](https://img.shields.io/badge/coverage-89%25-brightgreen.svg) |
-| Type Coverage | 100% | [![mypy](https://img.shields.io/badge/mypy-100%25-brightgreen.svg)](https://mypy.readthedocs.io/) |
-| Code Quality | A+ | [![Ruff](https://img.shields.io/badge/ruff-passing-brightgreen.svg)](https://github.com/astral-sh/ruff) |
-| Security Scan | Clean | [![Bandit](https://img.shields.io/badge/bandit-passing-brightgreen.svg)](https://github.com/PyCQA/bandit) |
-| Documentation | 100% | [![Docs](https://img.shields.io/badge/docs-100%25-brightgreen.svg)](README.md) |
+| Metric | Status |
+|--------|--------|
+| Test Coverage | ![Coverage Status](https://img.shields.io/badge/coverage-excellent-brightgreen.svg) |
+| Type Coverage | [![mypy](https://img.shields.io/badge/mypy-100%25-brightgreen.svg)](https://mypy.readthedocs.io/) |
+| Code Quality | [![Ruff](https://img.shields.io/badge/ruff-passing-brightgreen.svg)](https://github.com/astral-sh/ruff) |
+| Security Scan | [![Bandit](https://img.shields.io/badge/bandit-passing-brightgreen.svg)](https://github.com/PyCQA/bandit) |
+| Documentation | [![Docs](https://img.shields.io/badge/docs-100%25-brightgreen.svg)](README.md) |
 
 ## Features
 
@@ -42,7 +42,7 @@ color-coded file types, and support for long format listings and hidden files.
 - 📊 **Size Sorting**: Show top N largest files/directories sorted by size with the `-s` option
 - 🏃 **Fast Performance**: Built with modern Python using pathlib for efficient path operations
 - 🎯 **Type Safety**: Fully type-annotated codebase with mypy validation
-- ✅ **Well Tested**: Comprehensive test suite with 89% coverage
+- ✅ **Well Tested**: Comprehensive test suite with excellent coverage
 - 🐍 **Modern Python**: Uses Python 3.13+ features and best practices
 
 ## File Type Icons
@@ -166,28 +166,6 @@ richpyls -t
 │   ├── 🐍 __init__.py
 │   └── 🐍 test_richpyls.py
 └── 📄 uv.lock
-
-# Size-sorted listing (shows top N largest files/directories in Rich table)
-richpyls -s 5
-┏━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓
-┃      Type      ┃ Name                                      ┃                 Size ┃
-┡━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━┩
-│      DIR       │ 📁 .venv                                  │              100.4MB │
-│      DIR       │ 📁 .mypy_cache                            │               25.3MB │
-│      DIR       │ 📁 .git                                   │              529.5KB │
-│      DIR       │ 📁 tests                                  │              283.3KB │
-│      DIR       │ 📁 htmlcov                                │              192.5KB │
-└────────────────┴───────────────────────────────────────────┴──────────────────────┘
-
-# Size-sorted listing with hidden files
-richpyls -s 3 -a
-┏━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┓
-┃      Type      ┃ Name                                      ┃                 Size ┃
-┡━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━┩
-│      DIR       │ 📁 .venv                                  │              100.4MB │
-│      DIR       │ 📁 .mypy_cache                            │               25.3MB │
-│      DIR       │ 📁 .git                                   │              529.5KB │
-└────────────────┴───────────────────────────────────────────┴──────────────────────┘
 
 # Tree format with long listing and Rich table
 richpyls -tl src
@@ -322,7 +300,7 @@ uv run bandit -r src/
 The project maintains high code quality through:
 
 - **Type annotations**: All functions and variables are type-annotated
-- **Comprehensive tests**: 89% test coverage with edge cases
+- **Comprehensive tests**: Excellent test coverage with edge cases
 - **Clean architecture**: Well-organized code with clear separation of concerns
 - **Modern Python**: Uses latest Python features and best practices
 - **Rich UI**: Beautiful terminal output with colors, icons, and professional formatting
