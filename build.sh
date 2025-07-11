@@ -1,9 +1,9 @@
 #!/bin/bash
-# Build script for pyls package
+# Build script for richpyls package
 
 set -e
 
-echo "🏗️  Building pyls package..."
+echo "🏗️  Building richpyls package..."
 
 # Clean previous builds
 echo "🧹 Cleaning previous builds..."
@@ -19,7 +19,7 @@ uv run --group dev python -m pytest
 
 # Type checking
 echo "🔍 Running type checks..."
-uv run --group dev mypy src/pyls/
+uv run --group dev mypy src/richpyls/
 
 # Build the package
 echo "📦 Building package..."

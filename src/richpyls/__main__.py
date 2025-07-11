@@ -158,7 +158,7 @@ def create_long_listing_table(entries: list[Path]) -> Table:
     return table
 
 
-@click.command("pyls", epilog="Thanks for using pyls!")
+@click.command("richpyls", epilog="Thanks for using richpyls!")
 @click.version_option(__version__)
 @click.option(
     "-l",

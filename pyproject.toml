@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "pyls"
+name = "richpyls"
 dynamic = ["version"]
 description = "A modern, type-annotated Python implementation of the Unix ls command with beautiful Rich formatting and color-coded file types"
 readme = "README.md"
@@ -45,13 +45,13 @@ dependencies = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/lpozo/pyls"
-"Bug Reports" = "https://github.com/lpozo/pyls/issues"
-"Source" = "https://github.com/lpozo/pyls"
-"Documentation" = "https://github.com/lpozo/pyls#readme"
+"Homepage" = "https://github.com/lpozo/richpyls"
+"Bug Reports" = "https://github.com/lpozo/richpyls/issues"
+"Source" = "https://github.com/lpozo/richpyls"
+"Documentation" = "https://github.com/lpozo/richpyls#readme"
 
 [project.scripts]
-pyls = "pyls:cli"
+richpyls = "richpyls:cli"
 
 [dependency-groups]
 dev = [
@@ -67,10 +67,10 @@ publish = [
 ]
 
 [tool.hatch.version]
-path = "src/pyls/__init__.py"
+path = "src/richpyls/__init__.py"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/pyls"]
+packages = ["src/richpyls"]
 sources = ["src"]
 
 [tool.hatch.build.targets.sdist]

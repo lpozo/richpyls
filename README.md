@@ -1,10 +1,10 @@
-# pyls - A Python Implementation of the Unix `ls` Command
+# richpyls - A Python Implementation of the Unix `ls` Command
 
-[![CI/CD Pipeline](https://img.shields.io/github/actions/workflow/status/lpozo/pyls/ci.yml?branch=main&label=CI%2FCD&logo=github)](https://github.com/lpozo/pyls/actions)
-[![Test Coverage](https://img.shields.io/codecov/c/github/lpozo/pyls?logo=codecov)](https://codecov.io/gh/lpozo/pyls)
+[![CI/CD Pipeline](https://img.shields.io/github/actions/workflow/status/lpozo/richpyls/ci.yml?branch=main&label=CI%2FCD&logo=github)](https://github.com/lpozo/richpyls/actions)
+[![Test Coverage](https://img.shields.io/codecov/c/github/lpozo/richpyls?logo=codecov)](https://codecov.io/gh/lpozo/richpyls)
 [![Python Version](https://img.shields.io/badge/python-3.13+-blue.svg)](https://python.org)
-[![PyPI Version](https://img.shields.io/pypi/v/pyls?logo=pypi)](https://pypi.org/project/pyls/)
-[![PyPI Downloads](https://img.shields.io/pypi/dm/pyls?logo=pypi)](https://pypi.org/project/pyls/)
+[![PyPI Version](https://img.shields.io/pypi/v/richpyls?logo=pypi)](https://pypi.org/project/richpyls/)
+[![PyPI Downloads](https://img.shields.io/pypi/dm/richpyls?logo=pypi)](https://pypi.org/project/richpyls/)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code Style: Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
@@ -17,14 +17,14 @@ color-coded file types, and support for long format listings and hidden files.
 
 ## Quality Metrics
 
-![Lines of Code](https://img.shields.io/tokei/lines/github/lpozo/pyls?style=flat-square)
-![Code Size](https://img.shields.io/github/languages/code-size/lpozo/pyls?style=flat-square)
-![Repo Size](https://img.shields.io/github/repo-size/lpozo/pyls?style=flat-square)
-![Last Commit](https://img.shields.io/github/last-commit/lpozo/pyls?style=flat-square)
+![Lines of Code](https://img.shields.io/tokei/lines/github/lpozo/richpyls?style=flat-square)
+![Code Size](https://img.shields.io/github/languages/code-size/lpozo/richpyls?style=flat-square)
+![Repo Size](https://img.shields.io/github/repo-size/lpozo/richpyls?style=flat-square)
+![Last Commit](https://img.shields.io/github/last-commit/lpozo/richpyls?style=flat-square)
 
 | Metric | Value | Status |
 |--------|-------|--------|
-| Test Coverage | 79% | [![Coverage Status](https://img.shields.io/badge/coverage-79%25-yellow.svg)](https://codecov.io/gh/lpozo/pyls) |
+| Test Coverage | 79% | [![Coverage Status](https://img.shields.io/badge/coverage-79%25-yellow.svg)](https://codecov.io/gh/lpozo/richpyls) |
 | Type Coverage | 100% | [![mypy](https://img.shields.io/badge/mypy-100%25-brightgreen.svg)](https://mypy.readthedocs.io/) |
 | Code Quality | A+ | [![Ruff](https://img.shields.io/badge/ruff-passing-brightgreen.svg)](https://github.com/astral-sh/ruff) |
 | Security Scan | Clean | [![Bandit](https://img.shields.io/badge/bandit-passing-brightgreen.svg)](https://github.com/PyCQA/bandit) |
@@ -61,10 +61,10 @@ The Rich output includes beautiful emoji icons for different file types:
 ### From PyPI (Recommended)
 
 ```sh
-pip install pyls
+pip install richpyls
 ```
 
-Once installed, you can use the `pyls` command anywhere in your terminal.
+Once installed, you can use the `richpyls` command anywhere in your terminal.
 
 ### From Source
 
@@ -72,7 +72,7 @@ Once installed, you can use the `pyls` command anywhere in your terminal.
 
    ```sh
    git clone <repository-url>
-   cd pyls
+   cd richpyls
    ```
 
 2. Install dependencies:
@@ -91,13 +91,13 @@ Once installed, you can use the `pyls` command anywhere in your terminal.
 
 ```sh
 # List files in current directory
-$ pyls
+$ richpyls
 
 # List files in specific directory
-$ pyls /path/to/directory
+$ richpyls /path/to/directory
 
 # List multiple files/directories
-$ pyls file1.txt directory1 file2.txt
+$ richpyls file1.txt directory1 file2.txt
 ```
 
 ### Command Options
@@ -115,7 +115,7 @@ $ pyls file1.txt directory1 file2.txt
 
 ```sh
 # Basic listing with Rich icons and colors
-$ pyls
+$ richpyls
 📄 README.md
 ⚙️ pyproject.toml
 📁 src
@@ -123,7 +123,7 @@ $ pyls
 📄 uv.lock
 
 # Long format listing with Rich table
-$ pyls -l
+$ richpyls -l
                                      📁 Directory Listing
 ┏━━━━┳━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━
 ┃ T… ┃ Permissio… ┃ Links ┃ Owner     ┃ Group    ┃     Size ┃ Modified     ┃ Name
@@ -136,7 +136,7 @@ $ pyls -l
 └────┴────────────┴───────┴───────────┴──────────┴──────────┴──────────────┴─────────
 
 # Show hidden files with special emoji
-$ pyls -a
+$ richpyls -a
 🫣 .git
 🫣 .gitignore
 🫣 .python-version
@@ -148,26 +148,26 @@ $ pyls -a
 📄 uv.lock
 
 # Tree format (shows directory structure with Rich styling)
-$ pyls -t
+$ richpyls -t
 ├── 📄 README.md
 ├── ⚙️ pyproject.toml
 ├── 📁 src
-│   └── 📁 pyls
+│   └── 📁 richpyls
 │       ├── 🐍 __init__.py
 │       └── 🐍 __main__.py
 ├── 📁 tests
 │   ├── 🐍 __init__.py
-│   └── 🐍 test_pyls.py
+│   └── 🐍 test_richpyls.py
 └── 📄 uv.lock
 
 # Tree format with long listing and Rich table
-$ pyls -tl src
+$ richpyls -tl src
 └── 📁 src
                                      📁 Directory Listing
 ┏━━━━┳━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━
 ┃ T… ┃ Permissio… ┃ Links ┃ Owner     ┃ Group    ┃     Size ┃ Modified     ┃ Name
 ┡━━━━╇━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━
-│ 📁 │ drwxr-xr-x │     3 │ user      │ staff    │     96B  │ Dec 01 12:00 │ 📁 pyls
+│ 📁 │ drwxr-xr-x │     3 │ user      │ staff    │     96B  │ Dec 01 12:00 │ 📁 richpyls
 └────┴────────────┴───────┴───────────┴──────────┴──────────┴──────────────┴─────────
     ├── 🐍 __init__.py
     └── 🐍 __main__.py

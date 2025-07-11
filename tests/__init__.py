@@ -1,1 +1,1 @@
-"""Test suite for pyls package."""
+"""Test suite for richpyls package."""

@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
-"""Version bump utility for pyls package.
+"""Version bump utility for richpyls package.
 
 This script helps automate version bumping and follows semantic versioning.
 """
 
 import argparse
 import re
-import subprocess
+import subprocess  # nosec B404
 import sys
 from pathlib import Path
 
 
 def get_current_version() -> str:
     """Get the current version from __init__.py."""
-    init_file = Path("src/pyls/__init__.py")
+    init_file = Path("src/richpyls/__init__.py")
     if not init_file.exists():
-        raise FileNotFoundError("Could not find src/pyls/__init__.py")
+        raise FileNotFoundError("Could not find src/richpyls/__init__.py")
 
     content = init_file.read_text()
     match = re.search(r'__version__ = "([^"]+)"', content)
@@ -50,7 +50,7 @@ def bump_version(current_version: str, bump_type: str) -> str:
 
 def update_version_file(new_version: str) -> None:
     """Update the version in __init__.py."""
-    init_file = Path("src/pyls/__init__.py")
+    init_file = Path("src/richpyls/__init__.py")
     content = init_file.read_text()
 
     # Replace the version
@@ -59,15 +59,15 @@ def update_version_file(new_version: str) -> None:
     )
 
     init_file.write_text(new_content)
-    print(f'Updated src/pyls/__init__.py: __version__ = "{new_version}"')
+    print(f'Updated src/richpyls/__init__.py: __version__ = "{new_version}"')
 
 
 def run_tests() -> bool:
     """Run tests to ensure everything works."""
     try:
         print("Running tests...")
-        result = subprocess.run(
-            ["uv", "run", "python", "-m", "pytest", "--cov=pyls", "-q"],
+        result = subprocess.run(  # nosec B603, B607
+            ["uv", "run", "python", "-m", "pytest", "--cov=richpyls", "-q"],
             capture_output=True,
             text=True,
             check=True,
@@ -86,13 +86,13 @@ def check_code_quality() -> bool:
     checks = [
         (["uv", "run", "ruff", "format", "--check", "."], "Code formatting"),
         (["uv", "run", "ruff", "check", "."], "Code linting"),
-        (["uv", "run", "mypy", "src/pyls/"], "Type checking"),
+        (["uv", "run", "mypy", "src/richpyls/"], "Type checking"),
     ]
 
     for cmd, name in checks:
         try:
             print(f"Running {name}...")
-            subprocess.run(cmd, capture_output=True, text=True, check=True)
+            subprocess.run(cmd, capture_output=True, text=True, check=True)  # nosec B603
             print(f"✅ {name} passed")
         except subprocess.CalledProcessError as e:
             print(f"❌ {name} failed: {e}")
@@ -105,22 +105,22 @@ def git_commit_and_tag(version: str, push: bool = False) -> None:
     """Commit the version change and create a git tag."""
     try:
         # Add the changed file
-        subprocess.run(["git", "add", "src/pyls/__init__.py"], check=True)
+        subprocess.run(["git", "add", "src/richpyls/__init__.py"], check=True)  # nosec B603, B607
 
         # Commit the change
         commit_msg = f"bump: version {version}"
-        subprocess.run(["git", "commit", "-m", commit_msg], check=True)
+        subprocess.run(["git", "commit", "-m", commit_msg], check=True)  # nosec B603, B607
         print(f"✅ Committed version bump: {commit_msg}")
 
         # Create tag
         tag_name = f"v{version}"
-        subprocess.run(["git", "tag", tag_name], check=True)
+        subprocess.run(["git", "tag", tag_name], check=True)  # nosec B603, B607
         print(f"✅ Created tag: {tag_name}")
 
         if push:
             # Push changes and tags
-            subprocess.run(["git", "push", "origin", "main"], check=True)
-            subprocess.run(["git", "push", "origin", tag_name], check=True)
+            subprocess.run(["git", "push", "origin", "main"], check=True)  # nosec B603, B607
+            subprocess.run(["git", "push", "origin", tag_name], check=True)  # nosec B603, B607
             print("✅ Pushed changes and tags to origin")
             print("🚀 Automated publishing workflow will now trigger!")
         else:
@@ -132,7 +132,7 @@ def git_commit_and_tag(version: str, push: bool = False) -> None:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Bump version for pyls package")
+    parser = argparse.ArgumentParser(description="Bump version for richpyls package")
     parser.add_argument(
         "bump_type", choices=["major", "minor", "patch"], help="Type of version bump"
     )
