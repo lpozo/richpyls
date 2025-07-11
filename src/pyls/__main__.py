@@ -42,7 +42,10 @@ def cli(
     tree: bool,
     paths: tuple[str, ...],
 ) -> None:
-    """List information about the FILEs (the current directory by default)."""
+    """List information about the FILEs (the current directory by default).
+
+    Supports long format listing (-l), hidden files (-a), and tree view (-t).
+    """
     if not paths:
         paths_list: list[str] = ["."]
     else:
