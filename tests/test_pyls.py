@@ -237,3 +237,84 @@ def test_main_execution_coverage():
     # is executed directly, but for test coverage we just need to verify
     # the function exists
     assert callable(cli)
+
+
+def test_tree_format(tmp_path, monkeypatch):
+    """Test tree format display."""
+    # Setup directory structure
+    monkeypatch.chdir(tmp_path)
+    (tmp_path / "file1.txt").write_text("content1")
+    (tmp_path / "file2.txt").write_text("content2")
+    (tmp_path / "subdir").mkdir()
+    (tmp_path / "subdir" / "file3.txt").write_text("content3")
+    (tmp_path / "subdir" / "nested").mkdir()
+    (tmp_path / "subdir" / "nested" / "file4.txt").write_text("content4")
+
+    runner = CliRunner()
+    result = runner.invoke(cli, ["-t"])
+    assert result.exit_code == 0
+    output = result.output
+
+    # Check for tree structure characters
+    assert "├──" in output or "└──" in output
+
+    # Check that all files are present
+    assert "file1.txt" in output
+    assert "file2.txt" in output
+    assert "subdir" in output
+    assert "file3.txt" in output
+    assert "nested" in output
+    assert "file4.txt" in output
+
+    # Check that indentation is working (subdirectory content is indented)
+    lines = output.split("\n")
+    subdir_files = [line for line in lines if "file3.txt" in line or "nested" in line]
+    assert all(line.startswith("    ") for line in subdir_files if line.strip())
+
+
+def test_tree_format_with_long(tmp_path, monkeypatch):
+    """Test tree format with long listing."""
+    # Setup directory structure
+    monkeypatch.chdir(tmp_path)
+    (tmp_path / "file.txt").write_text("content")
+    (tmp_path / "subdir").mkdir()
+    (tmp_path / "subdir" / "nested.txt").write_text("nested")
+
+    runner = CliRunner()
+    result = runner.invoke(cli, ["-tl"])
+    assert result.exit_code == 0
+    output = result.output
+
+    # Check for tree structure characters
+    assert "├──" in output or "└──" in output
+
+    # Check for long format information (permissions, etc.)
+    assert "-r" in output or "drwx" in output  # Either file or dir permissions
+    assert "owner" in output or "staff" in output  # Owner information
+    assert "group" in output or "staff" in output  # Group information
+
+
+def test_tree_format_with_hidden(tmp_path, monkeypatch):
+    """Test tree format with hidden files."""
+    # Setup directory with hidden files
+    monkeypatch.chdir(tmp_path)
+    (tmp_path / "visible.txt").write_text("visible")
+    (tmp_path / ".hidden").write_text("hidden")
+    (tmp_path / "subdir").mkdir()
+    (tmp_path / "subdir" / ".hidden_nested").write_text("hidden nested")
+
+    runner = CliRunner()
+
+    # Test without -a flag (should not show hidden files)
+    result = runner.invoke(cli, ["-t"])
+    assert result.exit_code == 0
+    assert "visible.txt" in result.output
+    assert ".hidden" not in result.output
+    assert ".hidden_nested" not in result.output
+
+    # Test with -a flag (should show hidden files)
+    result = runner.invoke(cli, ["-ta"])
+    assert result.exit_code == 0
+    assert "visible.txt" in result.output
+    assert ".hidden" in result.output
+    assert ".hidden_nested" in result.output

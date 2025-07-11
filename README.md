@@ -34,6 +34,7 @@ listings and hidden files.
 
 - 📁 **Directory Listing**: List files and directories in the current or specified path
 - 📄 **Long Format**: Display detailed file information including permissions, ownership, size, and modification time
+- 🌳 **Tree View**: Display directories in a tree-like hierarchical format with the `-t` option
 - 🔍 **Hidden Files**: Show hidden files (starting with `.`) with the `-a` option
 - 🏃 **Fast Performance**: Built with modern Python using pathlib for efficient path operations
 - 🎯 **Type Safety**: Fully type-annotated codebase with mypy validation
@@ -90,7 +91,10 @@ $ pyls file1.txt directory1 file2.txt
 |--------|-------------|
 | `-l` | Use long listing format (shows permissions, ownership, size, date) |
 | `-a` | Show all files, including hidden files (starting with `.`) |
+| `-t` | Display directories in a tree-like format |
 | `-la` | Combine long format with showing hidden files |
+| `-tl` | Combine tree format with long listing |
+| `-ta` | Combine tree format with showing hidden files |
 
 ### Examples
 
@@ -131,6 +135,25 @@ drwxr-xr-x 12 user staff    384 Dec 01 12:00 .git
 drwxr-xr-x  3 user staff      96 Dec 01 12:00 src
 drwxr-xr-x  4 user staff     128 Dec 01 12:00 tests
 -rw-r--r--  1 user staff    9316 Dec 01 12:00 uv.lock
+
+# Tree format (shows directory structure)
+$ pyls -t
+├── README.md
+├── pyproject.toml
+├── src
+│   └── pyls
+│       ├── __init__.py
+│       └── __main__.py
+├── tests
+│   ├── __init__.py
+│   └── test_pyls.py
+└── uv.lock
+
+# Tree format with long listing
+$ pyls -tl src
+└── drwxr-xr-x  3 user staff     96 Dec 01 12:00 pyls
+    ├── -rw-r--r--  1 user staff    448 Dec 01 12:00 __init__.py
+    └── -rw-r--r--  1 user staff   3847 Dec 01 12:00 __main__.py
 ```
 
 ## Technologies

@@ -25,6 +25,12 @@ from . import __version__
     is_flag=True,
     help="do not ignore entries starting with .",
 )
+@click.option(
+    "-t",
+    "tree",
+    is_flag=True,
+    help="display directories in a tree-like format",
+)
 @click.argument(
     "paths",
     nargs=-1,
@@ -33,6 +39,7 @@ from . import __version__
 def cli(
     long: bool,
     show_all: bool,
+    tree: bool,
     paths: tuple[str, ...],
 ) -> None:
     """List information about the FILEs (the current directory by default)."""
@@ -50,7 +57,10 @@ def cli(
             click.echo(f"{path_obj}:")
 
         if path_obj.is_dir():
-            list_directory_entries(path_obj, show_all, long)
+            if tree:
+                list_directory_tree(path_obj, show_all, long)
+            else:
+                list_directory_entries(path_obj, show_all, long)
         else:
             list_single_file(path_obj, long)
 
@@ -118,6 +128,70 @@ def format_file_info(file_stat: stat_result, file_name: str) -> str:
         time.localtime(file_stat.st_mtime),
     )
     return f"{mode} {nlink:>2} {owner} {group} {size:>6} {mtime} {file_name}"
+
+
+def list_directory_tree(
+    path_obj: Path,
+    show_all: bool,
+    long_format: bool,
+    prefix: str = "",
+    is_last: bool = True,
+) -> None:
+    """Display directory contents in a tree-like format."""
+    try:
+        entries: list[Path] = sorted(path_obj.iterdir())
+    except OSError as os_error:
+        click.echo(
+            f"ls: cannot access '{path_obj}': {os_error.strerror}",
+            err=True,
+        )
+        return
+
+    # Filter hidden files unless show_all is True
+    entries = [entry for entry in entries if show_all or not entry.name.startswith(".")]
+
+    for i, entry_path in enumerate(entries):
+        is_last_entry = i == len(entries) - 1
+
+        # Choose the appropriate tree character
+        if is_last_entry:
+            tree_char = "└── "
+            next_prefix = prefix + "    "
+        else:
+            tree_char = "├── "
+            next_prefix = prefix + "│   "
+
+        try:
+            file_stat: stat_result = entry_path.lstat()
+        except OSError as os_error:
+            click.echo(
+                f"ls: cannot access '{entry_path}': {os_error.strerror}",
+                err=True,
+            )
+            continue
+
+        # Format the entry display
+        if long_format:
+            # Format file info without filename (add it with tree chars)
+            mode: str = stat.filemode(file_stat.st_mode)
+            nlink: int = file_stat.st_nlink
+            owner: str = pwd.getpwuid(file_stat.st_uid).pw_name
+            group: str = grp.getgrgid(file_stat.st_gid).gr_name
+            size: int = file_stat.st_size
+            mtime: str = time.strftime(
+                "%b %d %H:%M",
+                time.localtime(file_stat.st_mtime),
+            )
+            formatted_info = f"{mode} {nlink:>2} {owner} {group} {size:>6} {mtime}"
+            click.echo(f"{prefix}{tree_char}{formatted_info} {entry_path.name}")
+        else:
+            click.echo(f"{prefix}{tree_char}{entry_path.name}")
+
+        # Recursively display subdirectories
+        if entry_path.is_dir():
+            list_directory_tree(
+                entry_path, show_all, long_format, next_prefix, is_last_entry
+            )
 
 
 if __name__ == "__main__":
