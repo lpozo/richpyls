@@ -888,19 +888,19 @@ def _verify_directory_file_order(positions):
         positions["zebra.txt"],
     ]
 
-    assert max(directory_positions) < min(
-        file_positions
-    ), "Directories should appear before files"
+    assert max(directory_positions) < min(file_positions), (
+        "Directories should appear before files"
+    )
 
 
 def _verify_alphabetical_order(positions):
     """Verify alphabetical order within directories and files."""
     # Verify alphabetical order within directories
-    assert (
-        positions["apple_dir"] < positions["banana_dir"] < positions["zebra_dir"]
-    ), "Directories should be alphabetically sorted"
+    assert positions["apple_dir"] < positions["banana_dir"] < positions["zebra_dir"], (
+        "Directories should be alphabetically sorted"
+    )
 
     # Verify alphabetical order within files
-    assert (
-        positions["apple.txt"] < positions["banana.py"] < positions["zebra.txt"]
-    ), "Files should be alphabetically sorted"
+    assert positions["apple.txt"] < positions["banana.py"] < positions["zebra.txt"], (
+        "Files should be alphabetically sorted"
+    )
