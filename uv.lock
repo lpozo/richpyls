@@ -454,6 +454,7 @@ name = "pyls"
 source = { editable = "." }
 dependencies = [
     { name = "click" },
+    { name = "rich" },
 ]
 
 [package.dev-dependencies]
@@ -470,7 +471,10 @@ publish = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "click", specifier = ">=8.2.1" }]
+requires-dist = [
+    { name = "click", specifier = ">=8.2.1" },
+    { name = "rich", specifier = ">=14.0.0" },
+]
 
 [package.metadata.requires-dev]
 dev = [
