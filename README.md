@@ -1,30 +1,31 @@
 # richpyls - A Python Implementation of the Unix `ls` Command
 
 [![CI/CD Pipeline](https://img.shields.io/github/actions/workflow/status/lpozo/richpyls/ci.yml?branch=main&label=CI%2FCD&logo=github)](https://github.com/lpozo/richpyls/actions)
-[![Test Coverage](https://img.shields.io/codecov/c/github/lpozo/richpyls?logo=codecov)](https://codecov.io/gh/lpozo/richpyls)
 [![Python Version](https://img.shields.io/badge/python-3.13+-blue.svg)](https://python.org)
-[![PyPI Version](https://img.shields.io/pypi/v/richpyls?logo=pypi)](https://pypi.org/project/richpyls/)
-[![PyPI Downloads](https://img.shields.io/pypi/dm/richpyls?logo=pypi)](https://pypi.org/project/richpyls/)
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code Style: Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Type Checked: mypy](https://img.shields.io/badge/type%20checked-mypy-blue.svg)](https://mypy.readthedocs.io/)
 [![Security: Bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
 [![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 
+<!-- Commented out until package is published to PyPI
+[![Test Coverage](https://img.shields.io/codecov/c/github/lpozo/richpyls?logo=codecov)](https://codecov.io/gh/lpozo/richpyls)
+[![PyPI Version](https://img.shields.io/pypi/v/richpyls?logo=pypi)](https://pypi.org/project/richpyls/)
+[![PyPI Downloads](https://img.shields.io/pypi/dm/richpyls?logo=pypi)](https://pypi.org/project/richpyls/)
+-->
+
 A modern, type-annotated Python implementation of the Unix `ls` command with beautiful Rich formatting,
 color-coded file types, and support for long format listings and hidden files.
 
 ## Quality Metrics
 
-![Lines of Code](https://img.shields.io/tokei/lines/github/lpozo/richpyls?style=flat-square)
 ![Code Size](https://img.shields.io/github/languages/code-size/lpozo/richpyls?style=flat-square)
 ![Repo Size](https://img.shields.io/github/repo-size/lpozo/richpyls?style=flat-square)
 ![Last Commit](https://img.shields.io/github/last-commit/lpozo/richpyls?style=flat-square)
 
 | Metric | Value | Status |
 |--------|-------|--------|
-| Test Coverage | 89% | [![Coverage Status](https://img.shields.io/badge/coverage-89%25-brightgreen.svg)](https://codecov.io/gh/lpozo/richpyls) |
+| Test Coverage | 89% | ![Coverage Status](https://img.shields.io/badge/coverage-89%25-brightgreen.svg) |
 | Type Coverage | 100% | [![mypy](https://img.shields.io/badge/mypy-100%25-brightgreen.svg)](https://mypy.readthedocs.io/) |
 | Code Quality | A+ | [![Ruff](https://img.shields.io/badge/ruff-passing-brightgreen.svg)](https://github.com/astral-sh/ruff) |
 | Security Scan | Clean | [![Bandit](https://img.shields.io/badge/bandit-passing-brightgreen.svg)](https://github.com/PyCQA/bandit) |
@@ -58,20 +59,12 @@ The Rich output includes beautiful emoji icons for different file types:
 
 ## Installation
 
-### From PyPI (Recommended)
-
-```sh
-pip install richpyls
-```
-
-Once installed, you can use the `richpyls` command anywhere in your terminal.
-
 ### From Source
 
 1. Clone the repository:
 
    ```sh
-   git clone <repository-url>
+   git clone https://github.com/lpozo/richpyls.git
    cd richpyls
    ```
 
@@ -84,6 +77,22 @@ Once installed, you can use the `richpyls` command anywhere in your terminal.
    # Or using pip (install Rich and Click manually)
    pip install rich click
    ```
+
+3. Run the application:
+
+   ```sh
+   uv run richpyls
+   ```
+
+<!-- Uncomment when package is published to PyPI
+### From PyPI (Recommended)
+
+```sh
+pip install richpyls
+```
+
+Once installed, you can use the `richpyls` command anywhere in your terminal.
+-->
 
 ## Usage
 
@@ -192,8 +201,11 @@ richpyls -tl src
 
 ![Build Status](https://img.shields.io/github/actions/workflow/status/lpozo/richpyls/ci.yml?branch=main&label=Build&logo=github)
 ![Tests](https://img.shields.io/github/actions/workflow/status/lpozo/richpyls/ci.yml?branch=main&label=Tests&logo=pytest)
+
+<!-- Commented out until package is published to PyPI
 ![PyPI Status](https://img.shields.io/pypi/status/richpyls?logo=pypi)
 ![Wheel](https://img.shields.io/pypi/wheel/richpyls?logo=pypi)
+-->
 
 ## Development
 
