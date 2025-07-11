@@ -24,7 +24,7 @@ color-coded file types, and support for long format listings and hidden files.
 
 | Metric | Value | Status |
 |--------|-------|--------|
-| Test Coverage | 79% | [![Coverage Status](https://img.shields.io/badge/coverage-79%25-yellow.svg)](https://codecov.io/gh/lpozo/richpyls) |
+| Test Coverage | 89% | [![Coverage Status](https://img.shields.io/badge/coverage-89%25-brightgreen.svg)](https://codecov.io/gh/lpozo/richpyls) |
 | Type Coverage | 100% | [![mypy](https://img.shields.io/badge/mypy-100%25-brightgreen.svg)](https://mypy.readthedocs.io/) |
 | Code Quality | A+ | [![Ruff](https://img.shields.io/badge/ruff-passing-brightgreen.svg)](https://github.com/astral-sh/ruff) |
 | Security Scan | Clean | [![Bandit](https://img.shields.io/badge/bandit-passing-brightgreen.svg)](https://github.com/PyCQA/bandit) |
@@ -39,7 +39,7 @@ color-coded file types, and support for long format listings and hidden files.
 - 🔍 **Hidden Files**: Show hidden files (starting with `.`) with the `-a` option using 🫣 emoji
 - 🏃 **Fast Performance**: Built with modern Python using pathlib for efficient path operations
 - 🎯 **Type Safety**: Fully type-annotated codebase with mypy validation
-- ✅ **Well Tested**: Comprehensive test suite with 79% coverage
+- ✅ **Well Tested**: Comprehensive test suite with 89% coverage
 - 🐍 **Modern Python**: Uses Python 3.13+ features and best practices
 
 ## File Type Icons
@@ -193,10 +193,10 @@ $ richpyls -tl src
 
 ### Build & Deployment
 
-![Build Status](https://img.shields.io/github/actions/workflow/status/lpozo/pyls/ci.yml?branch=main&label=Build&logo=github)
-![Tests](https://img.shields.io/github/actions/workflow/status/lpozo/pyls/ci.yml?branch=main&label=Tests&logo=pytest)
-![PyPI Status](https://img.shields.io/pypi/status/pyls?logo=pypi)
-![Wheel](https://img.shields.io/pypi/wheel/pyls?logo=pypi)
+![Build Status](https://img.shields.io/github/actions/workflow/status/lpozo/richpyls/ci.yml?branch=main&label=Build&logo=github)
+![Tests](https://img.shields.io/github/actions/workflow/status/lpozo/richpyls/ci.yml?branch=main&label=Tests&logo=pytest)
+![PyPI Status](https://img.shields.io/pypi/status/richpyls?logo=pypi)
+![Wheel](https://img.shields.io/pypi/wheel/richpyls?logo=pypi)
 
 ## Development
 
@@ -233,14 +233,14 @@ $ uv run python -m pytest
 $ uv run python -m pytest -v
 
 # Run tests with coverage
-$ uv run python -m pytest --cov=pyls
+$ uv run python -m pytest --cov=richpyls
 ```
 
 ### Type Checking
 
 ```sh
 # Check types with mypy
-$ uv run mypy src/pyls/
+$ uv run mypy src/richpyls/
 
 # Check all Python files
 $ uv run mypy .
@@ -263,6 +263,44 @@ $ uv run bandit -r src/
 
 **Pre-commit hooks** automatically run quality checks on every commit. See
 [CODE_QUALITY.md](CODE_QUALITY.md) for detailed information about all quality tools and workflows.
+
+### Building the Package
+
+To build the package for distribution:
+
+```sh
+# Build both wheel and source distribution
+$ uv build
+
+# Build only wheel
+$ uv build --wheel
+
+# Build only source distribution
+$ uv build --sdist
+
+# Clean previous builds first
+$ rm -rf dist/ && uv build
+```
+
+This creates distribution files in the `dist/` directory:
+
+- `richpyls-X.Y.Z-py3-none-any.whl` (wheel package)
+- `richpyls-X.Y.Z.tar.gz` (source distribution)
+
+### Publishing to PyPI
+
+For manual publishing (though automated publishing is recommended):
+
+```sh
+# Install publishing dependencies
+$ uv sync --group publish
+
+# Publish to TestPyPI (for testing)
+$ uv run twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+
+# Publish to PyPI (production)
+$ uv run twine upload dist/*
+```
 
 ### Automated Publishing
 
@@ -291,7 +329,7 @@ See [AUTOMATED_PUBLISHING.md](AUTOMATED_PUBLISHING.md) for setup instructions.
 The project maintains high code quality through:
 
 - **Type annotations**: All functions and variables are type-annotated
-- **Comprehensive tests**: 79% test coverage with edge cases
+- **Comprehensive tests**: 89% test coverage with edge cases
 - **Clean architecture**: Well-organized code with clear separation of concerns
 - **Modern Python**: Uses latest Python features and best practices
 - **Rich UI**: Beautiful terminal output with colors, icons, and professional formatting
@@ -308,7 +346,7 @@ Contributions are welcome! Here's how you can help:
 
    ```sh
    uv run python -m pytest  # Run tests
-   uv run mypy src/pyls/     # Type check
+   uv run mypy src/richpyls/     # Type check
    ```
 
 6. **Commit your changes**: `git commit -m 'Add amazing feature'`

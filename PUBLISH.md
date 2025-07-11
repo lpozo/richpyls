@@ -1,6 +1,6 @@
 # Publishing to PyPI
 
-This guide explains how to publish the `pyls` package to PyPI, including both automated and manual publishing methods.
+This guide explains how to publish the `richpyls` package to PyPI, including both automated and manual publishing methods.
 
 ## 🤖 Automated Publishing (Recommended)
 
@@ -16,7 +16,7 @@ main branch, the package is automatically:
 
 ### Quick Start
 
-1. **Update the version** in `src/pyls/__init__.py`:
+1. **Update the version** in `src/richpyls/__init__.py`:
 
    ```python
    __version__ = "0.2.0"  # Increment as needed
@@ -25,7 +25,7 @@ main branch, the package is automatically:
 2. **Commit and push** to main:
 
    ```sh
-   git add src/pyls/__init__.py
+   git add src/richpyls/__init__.py
    git commit -m "bump: version 0.2.0"
    git push origin main
    ```
@@ -38,9 +38,9 @@ main branch, the package is automatically:
 
 1. Go to [PyPI Trusted Publishing](https://pypi.org/manage/account/publishing/)
 2. Add a new trusted publisher:
-   - **PyPI Project Name**: `pyls`
+   - **PyPI Project Name**: `richpyls`
    - **Owner**: `lpozo`
-   - **Repository**: `pyls`
+   - **Repository**: `richpyls`
    - **Workflow**: `publish.yml`
    - **Environment**: `pypi`
 
@@ -59,7 +59,7 @@ For manual publishing or testing purposes:
 2. Update your information in `pyproject.toml`:
    - Replace `"your-email@example.com"` with your actual email
    - Update the GitHub URLs to your repository
-   - Version is automatically read from `src/pyls/__init__.py`
+   - Version is automatically read from `src/richpyls/__init__.py`
 
 ## Publishing Steps
 
@@ -73,7 +73,7 @@ $ uv run --group publish python -m build
 $ uv run --group publish python -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 
 # Test installation from TestPyPI
-$ pip install --index-url https://test.pypi.org/simple/ pyls
+$ pip install --index-url https://test.pypi.org/simple/ richpyls
 ```
 
 ### 2. Publish to PyPI
@@ -89,14 +89,14 @@ $ uv run --group publish python -m twine upload dist/*
 ### 3. Install from PyPI
 
 ```sh
-pip install pyls
+pip install richpyls
 ```
 
 ## Version Management
 
 Before publishing:
 
-1. Update the version in `src/pyls/__init__.py`:
+1. Update the version in `src/richpyls/__init__.py`:
 
    ```python
    __version__ = "0.2.0"  # Update this line
@@ -111,10 +111,10 @@ Before publishing:
 
 ## Package Information
 
-- **Package Name**: `pyls`
-- **Command Name**: `pyls`
-- **Module Name**: `pyls`
-- **Entry Point**: `pyls:cli`
+- **Package Name**: `richpyls`
+- **Command Name**: `richpyls`
+- **Module Name**: `richpyls`
+- **Entry Point**: `richpyls:cli`
 
 ## Authentication
 

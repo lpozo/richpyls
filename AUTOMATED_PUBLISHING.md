@@ -1,6 +1,6 @@
 # Automated PyPI Publication Setup Guide
 
-This guide explains how to set up automated PyPI publication for the `pyls` package.
+This guide explains how to set up automated PyPI publication for the `richpyls` package.
 
 ## Overview
 
@@ -22,9 +22,9 @@ The automated publication system will:
 
 1. **Go to PyPI**: <https://pypi.org/manage/account/publishing/>
 2. **Add a new trusted publisher** with these details:
-   - **PyPI Project Name**: `pyls`
+   - **PyPI Project Name**: `richpyls`
    - **Owner**: `lpozo` (your GitHub username)
-   - **Repository name**: `pyls`
+   - **Repository name**: `richpyls`
    - **Workflow filename**: `publish.yml`
    - **Environment name**: `pypi` (optional but recommended)
 
@@ -74,7 +74,7 @@ Before publishing, the workflow ensures:
 The workflow automatically detects version changes by:
 
 1. Comparing the current commit with the previous one
-2. Checking if `src/pyls/__init__.py` was modified
+2. Checking if `src/richpyls/__init__.py` was modified
 3. Verifying that the `__version__` variable changed
 4. Only publishing if a version bump is detected
 
@@ -92,7 +92,7 @@ After successful publication, the workflow:
 ### Standard Release Process
 
 1. **Make your changes** and ensure all tests pass locally
-2. **Update the version** in `src/pyls/__init__.py`:
+2. **Update the version** in `src/richpyls/__init__.py`:
 
    ```python
    __version__ = "0.2.0"  # Increment as needed

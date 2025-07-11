@@ -1,6 +1,7 @@
 # Code Quality Guide
 
-This project uses several tools to maintain high code quality and consistency.
+This project uses several tools to mainta# Run a specific test
+$ uv run python -m pytest tests/test_richpyls.py::test_default_and_show_all high code quality and consistency.
 
 ## Available Tools
 
@@ -21,7 +22,7 @@ $ uv run ruff check .
 $ uv run ruff check . --fix
 
 # Check specific files
-$ uv run ruff check src/pyls/__main__.py
+$ uv run ruff check src/richpyls/__main__.py
 ```
 
 **Configuration:** Ruff is configured in `pyproject.toml` under `[tool.ruff]`.
@@ -34,13 +35,13 @@ MyPy provides static type checking to catch type-related errors.
 
 ```sh
 # Type check the main package
-$ uv run mypy src/pyls/
+$ uv run mypy src/richpyls/
 
 # Type check all Python files
 $ uv run mypy .
 
 # Type check with verbose output
-$ uv run mypy src/pyls/ --verbose
+$ uv run mypy src/richpyls/ --verbose
 ```
 
 **Configuration:** MyPy uses the default configuration, relying on type annotations in the code.
@@ -56,7 +57,7 @@ Pytest runs our comprehensive test suite with coverage reporting.
 $ uv run python -m pytest
 
 # Run tests with coverage
-$ uv run python -m pytest --cov=pyls
+$ uv run python -m pytest --cov=richpyls
 
 # Run tests with verbose output
 $ uv run python -m pytest -v
@@ -150,7 +151,7 @@ The project includes automated CI/CD workflows that run on every push and pull r
 2. **Run tests** to ensure functionality: `uv run python -m pytest`
 3. **Format code** with ruff: `uv run ruff format .`
 4. **Check linting** with ruff: `uv run ruff check .`
-5. **Type check** with mypy: `uv run mypy src/pyls/`
+5. **Type check** with mypy: `uv run mypy src/richpyls/`
 6. **Commit changes** - pre-commit hooks will run automatically
 7. **Push to GitHub** - CI/CD pipeline will run automatically
 
