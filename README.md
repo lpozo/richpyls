@@ -1,8 +1,9 @@
-# richpyls - A Python Implementation of the Unix `ls` Command
+# `richpyls` - A Python Implementation of the Unix `ls` Command
 
 [![CI/CD Pipeline](https://img.shields.io/github/actions/workflow/status/lpozo/richpyls/ci.yml?branch=main&label=CI%2FCD&logo=github)](https://github.com/lpozo/richpyls/actions)
 [![Python Version](https://img.shields.io/badge/python-3.13+-blue.svg)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 [![Code Style: Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Type Checked: mypy](https://img.shields.io/badge/type%20checked-mypy-blue.svg)](https://mypy.readthedocs.io/)
 [![Security: Bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
@@ -59,40 +60,63 @@ The Rich output includes beautiful emoji icons for different file types:
 
 ## Installation
 
-### From Source
-
-1. Clone the repository:
-
-   ```sh
-   git clone https://github.com/lpozo/richpyls.git
-   cd richpyls
-   ```
-
-2. Install dependencies:
-
-   ```sh
-   # Using uv (recommended)
-   uv sync
-
-   # Or using pip (install Rich and Click manually)
-   pip install rich click
-   ```
-
-3. Run the application:
-
-   ```sh
-   uv run richpyls
-   ```
-
-<!-- Uncomment when package is published to PyPI
 ### From PyPI (Recommended)
 
 ```sh
-pip install richpyls
+# Install from PyPI
+pip install `richpyls`
 ```
 
 Once installed, you can use the `richpyls` command anywhere in your terminal.
--->
+
+### From Source (Development)
+
+#### Prerequisites
+
+Create and activate a virtual environment:
+
+```sh
+# Create virtual environment
+python -m venv .venv
+
+# Activate virtual environment
+source .venv/bin/activate  # On macOS/Linux
+# or
+.venv\Scripts\activate     # On Windows
+```
+
+#### Installation Options
+
+1. **Using uv (recommended for development)**:
+
+   ```sh
+   # Clone the repository
+   git clone https://github.com/lpozo/richpyls.git
+   cd `richpyls`
+
+   # Install with uv
+   uv sync
+
+   # Run the application
+   uv run `richpyls`
+   ```
+
+2. **Using pip**:
+
+   ```sh
+   # Clone the repository
+   git clone https://github.com/lpozo/richpyls.git
+   cd `richpyls`
+
+   # Install dependencies
+   pip install rich click
+
+   # Install in editable mode
+   pip install -e .
+
+   # Run the application
+   `richpyls`
+   ```
 
 ## Usage
 
@@ -100,13 +124,13 @@ Once installed, you can use the `richpyls` command anywhere in your terminal.
 
 ```sh
 # List files in current directory
-richpyls
+`richpyls`
 
 # List files in specific directory
-richpyls /path/to/directory
+`richpyls` /path/to/directory
 
 # List multiple files/directories
-richpyls file1.txt directory1 file2.txt
+`richpyls` file1.txt directory1 file2.txt
 ```
 
 ### Command Options
@@ -124,28 +148,15 @@ richpyls file1.txt directory1 file2.txt
 
 ```sh
 # Basic listing with Rich icons and colors
-richpyls
+`richpyls`
 📄 README.md
 ⚙️ pyproject.toml
 📁 src
 📁 tests
 📄 uv.lock
 
-# Long format listing with Rich table
-richpyls -l
-                                     📁 Directory Listing
-┏━━━━┳━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━
-┃ T… ┃ Permissio… ┃ Links ┃ Owner     ┃ Group    ┃     Size ┃ Modified     ┃ Name
-┡━━━━╇━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━
-│ 📄 │ -rw-r--r-- │     1 │ user      │ staff    │   1.2KB  │ Dec 01 12:00 │ 📄 READ…
-│ ⚙️  │ -rw-r--r-- │     1 │ user      │ staff    │    249B  │ Dec 01 12:00 │ ⚙️ pypro…
-│ 📁 │ drwxr-xr-x │     3 │ user      │ staff    │     96B  │ Dec 01 12:00 │ 📁 src
-│ 📁 │ drwxr-xr-x │     4 │ user      │ staff    │    128B  │ Dec 01 12:00 │ 📁 tests
-│ 📄 │ -rw-r--r-- │     1 │ user      │ staff    │   9.3KB  │ Dec 01 12:00 │ 📄 uv.lo
-└────┴────────────┴───────┴───────────┴──────────┴──────────┴──────────────┴─────────
-
 # Show hidden files with special emoji
-richpyls -a
+`richpyls` -a
 🫣 .git
 🫣 .gitignore
 🫣 .python-version
@@ -157,7 +168,7 @@ richpyls -a
 📄 uv.lock
 
 # Tree format (shows directory structure with Rich styling)
-richpyls -t
+`richpyls` -t
 ├── 📄 README.md
 ├── ⚙️ pyproject.toml
 ├── 📁 src
@@ -170,7 +181,7 @@ richpyls -t
 └── 📄 uv.lock
 
 # Tree format with long listing and Rich table
-richpyls -tl src
+`richpyls` -tl src
 └── drwxr-xr-x  5 leodanispozoramos staff     160B Jul 11 18:34 📁 richpyls
     ├── drwxr-xr-x  4 leodanispozoramos staff     128B Jul 11 18:34 📁 __pycache__
     │   ├── -rw-r--r--  1 leodanispozoramos staff     622B Jul 11 18:34 📄 __init__.cpython-313.pyc
@@ -184,7 +195,6 @@ richpyls -tl src
 ### Runtime Dependencies
 
 - **[Python 3.13+](https://python.org)**: Modern Python with type hints and advanced features
-- **[pathlib](https://docs.python.org/3/library/pathlib.html)**: Object-oriented filesystem paths (built-in)
 - **[click](https://click.palletsprojects.com/)**: Command-line interface creation toolkit
 - **[rich](https://rich.readthedocs.io/)**: Rich text and beautiful formatting for the terminal
 
@@ -207,29 +217,38 @@ richpyls -tl src
 ![Wheel](https://img.shields.io/pypi/wheel/richpyls?logo=pypi)
 -->
 
-## Development
+## Development & Contributing
 
-### Setup
+Contributions are welcome! Here's how you can set up the development environment and contribute:
 
-1. Clone the repository and navigate to the project directory
-2. Install development dependencies:
+### Development Setup
+
+1. **Fork the repository** (for contributions) or clone directly:
+
+   ```sh
+   git clone https://github.com/lpozo/richpyls.git
+   cd `richpyls`
+   ```
+
+2. **Create and activate a virtual environment**:
+
+   ```sh
+   python -m venv .venv
+   source .venv/bin/activate  # On macOS/Linux
+   # or
+   .venv\Scripts\activate     # On Windows
+   ```
+
+3. **Install development dependencies**:
 
    ```sh
    uv sync --dev
    ```
 
-3. Set up pre-commit hooks for code quality:
+4. **Set up pre-commit hooks** for code quality:
 
    ```sh
    uv run pre-commit install
-   ```
-
-4. Activate the virtual environment:
-
-   ```sh
-   source .venv/bin/activate  # On macOS/Linux
-   # or
-   .venv\Scripts\activate     # On Windows
    ```
 
 ### Running Tests
@@ -242,14 +261,14 @@ uv run python -m pytest
 uv run python -m pytest -v
 
 # Run tests with coverage
-uv run python -m pytest --cov=richpyls
+uv run python -m pytest --cov=`richpyls`
 ```
 
 ### Type Checking
 
 ```sh
 # Check types with mypy
-uv run mypy src/richpyls/
+uv run mypy src/`richpyls`/
 
 # Check all Python files
 uv run mypy .
@@ -270,68 +289,33 @@ uv run ruff check . --fix
 uv run bandit -r src/
 ```
 
-**Pre-commit hooks** automatically run quality checks on every commit. See
-[CODE_QUALITY.md](CODE_QUALITY.md) for detailed information about all quality tools and workflows.
+**Pre-commit hooks** automatically run quality checks on every commit.
 
-### Building the Package
+### Contributing Workflow
 
-To build the package for distribution:
+1. **Create a feature branch**: `git checkout -b feature/amazing-feature`
+2. **Make your changes**: Implement your feature or bug fix
+3. **Add tests**: Ensure your changes are well-tested
+4. **Run quality checks**:
 
-```sh
-# Build both wheel and source distribution
-uv build
+   ```sh
+   uv run python -m pytest          # Run tests
+   uv run mypy src/`richpyls`/        # Type check
+   uv run ruff format .             # Format code
+   uv run ruff check .              # Lint code
+   ```
 
-# Build only wheel
-uv build --wheel
+5. **Commit your changes**: `git commit -m 'Add amazing feature'`
+6. **Push to the branch**: `git push origin feature/amazing-feature`
+7. **Open a Pull Request**
 
-# Build only source distribution
-uv build --sdist
+### Development Guidelines
 
-# Clean previous builds first
-rm -rf dist/ && uv build
-```
-
-This creates distribution files in the `dist/` directory:
-
-- `richpyls-X.Y.Z-py3-none-any.whl` (wheel package)
-- `richpyls-X.Y.Z.tar.gz` (source distribution)
-
-### Publishing to PyPI
-
-For manual publishing (though automated publishing is recommended):
-
-```sh
-# Install publishing dependencies
-uv sync --group publish
-
-# Publish to TestPyPI (for testing)
-uv run twine upload --repository-url https://test.pypi.org/legacy/ dist/*
-
-# Publish to PyPI (production)
-uv run twine upload dist/*
-```
-
-### Automated Publishing
-
-The project includes automated PyPI publishing via GitHub Actions:
-
-```sh
-# Bump version and trigger automated publishing
-python bump_version.py patch  # or minor, major
-git push origin main  # Triggers automated publishing
-
-# Or use the convenience script that does everything
-python bump_version.py patch --push
-```
-
-The automated workflow:
-
-1. ✅ Runs all quality checks (formatting, linting, type checking, tests)
-2. 📦 Builds and validates the package
-3. 🚀 Publishes to PyPI using trusted publishing
-4. 🏷️ Creates GitHub release with changelog
-
-See [AUTOMATED_PUBLISHING.md](AUTOMATED_PUBLISHING.md) for setup instructions.
+- Follow PEP 8 style guidelines
+- Add type hints to all new code
+- Write tests for new functionality
+- Update documentation as needed
+- Ensure all tests pass before submitting
 
 ### Project Standards
 
@@ -343,32 +327,9 @@ The project maintains high code quality through:
 - **Modern Python**: Uses latest Python features and best practices
 - **Rich UI**: Beautiful terminal output with colors, icons, and professional formatting
 
-## Contributing
+### Build & Publishing
 
-Contributions are welcome! Here's how you can help:
-
-1. **Fork the repository**
-2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
-3. **Make your changes**: Implement your feature or bug fix
-4. **Add tests**: Ensure your changes are well-tested
-5. **Run quality checks**:
-
-   ```sh
-   uv run python -m pytest  # Run tests
-   uv run mypy src/richpyls/     # Type check
-   ```
-
-6. **Commit your changes**: `git commit -m 'Add amazing feature'`
-7. **Push to the branch**: `git push origin feature/amazing-feature`
-8. **Open a Pull Request**
-
-### Development Guidelines
-
-- Follow PEP 8 style guidelines
-- Add type hints to all new code
-- Write tests for new functionality
-- Update documentation as needed
-- Ensure all tests pass before submitting
+For information about building and publishing the package, see [BUILD_PUBLISHING.md](BUILD_PUBLISHING.md).
 
 ## License
 
@@ -390,3 +351,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - Built with modern Python best practices
 - Thanks to the Python community for excellent tools and libraries
 - Special thanks to the [Rich](https://rich.readthedocs.io/) library for beautiful terminal output
+- Development assisted by [GitHub Copilot Chat](https://github.com/features/copilot) for enhanced productivity
