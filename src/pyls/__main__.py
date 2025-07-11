@@ -138,7 +138,6 @@ def list_directory_tree(
     show_all: bool,
     long_format: bool,
     prefix: str = "",
-    is_last: bool = True,
 ) -> None:
     """Display directory contents in a tree-like format."""
     try:
@@ -192,9 +191,7 @@ def list_directory_tree(
 
         # Recursively display subdirectories
         if entry_path.is_dir():
-            list_directory_tree(
-                entry_path, show_all, long_format, next_prefix, is_last_entry
-            )
+            list_directory_tree(entry_path, show_all, long_format, next_prefix)
 
 
 if __name__ == "__main__":
