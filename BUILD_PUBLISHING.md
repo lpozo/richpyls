@@ -62,21 +62,6 @@ The automated workflow:
 3. 🚀 Publishes to PyPI using trusted publishing
 4. 🏷️ Creates GitHub release with changelog
 
-## PyPI Trusted Publishing Setup
-
-To set up automated publishing:
-
-1. **Create PyPI account** at <https://pypi.org/account/register/>
-2. **Add Trusted Publisher** at <https://pypi.org/manage/account/publishing/>:
-   - **Project name**: `richpyls`
-   - **Owner**: `lpozo`
-   - **Repository**: `richpyls`
-   - **Workflow**: `publish.yml`
-   - **Environment**: `pypi`
-3. **Configure GitHub environment** in repository settings:
-   - **Environment name**: `pypi`
-   - **Protection rules**: Only `main` branch deployments
-
 ## Version Management
 
 Update the version in `src/richpyls/__init__.py`:

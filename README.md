@@ -63,64 +63,48 @@ The Rich output includes beautiful emoji icons for different file types:
 ### From PyPI (Recommended)
 
 ```sh
-# Install from PyPI
 pip install richpyls
 ```
 
 Once installed, you can use the `richpyls` command anywhere in your terminal.
 
-### From Source (Development)
+### From Source
 
-#### Prerequisites
-
-Create and activate a virtual environment:
+#### Using `uv` (recommended)
 
 ```sh
-# Create virtual environment
-python -m venv .venv
+# Clone the repository
+git clone https://github.com/lpozo/richpyls.git
+cd richpyls
 
-# Activate virtual environment
+# Install with uv
+uv sync
+
+# Run the application
+uv run richpyls
+```
+
+#### Using `pip`
+
+```sh
+# Clone the repository
+git clone https://github.com/lpozo/richpyls.git
+cd richpyls
+
+# Create and activate a virtual environment
+python -m venv .venv
 source .venv/bin/activate  # On macOS/Linux
 # or
 .venv\Scripts\activate     # On Windows
+
+# Install in editable mode
+pip install -e .
+
+# Run the application
+richpyls
 ```
 
-#### Installation Options
-
-1. **Using uv (recommended for development)**:
-
-   ```sh
-   # Clone the repository
-   git clone https://github.com/lpozo/richpyls.git
-   cd richpyls
-
-   # Install with uv
-   uv sync
-
-   # Run the application
-   uv run richpyls
-   ```
-
-2. **Using pip**:
-
-   ```sh
-   # Clone the repository
-   git clone https://github.com/lpozo/richpyls.git
-   cd richpyls
-
-   # Install dependencies
-   pip install rich click
-
-   # Install in editable mode
-   pip install -e .
-
-   # Run the application
-   richpyls
-   ```
-
 ## Usage
-
-### Basic Usage
 
 ```sh
 # List files in current directory
@@ -192,7 +176,7 @@ richpyls -tl src
 
 ## Technologies
 
-### Runtime Dependencies
+### Dependencies
 
 - **[Python 3.13+](https://python.org)**: Modern Python with type hints and advanced features
 - **[click](https://click.palletsprojects.com/)**: Command-line interface creation toolkit
@@ -221,35 +205,26 @@ richpyls -tl src
 
 Contributions are welcome! Here's how you can set up the development environment and contribute:
 
-### Development Setup
+### Setup
 
-1. **Fork the repository** (for contributions) or clone directly:
+1. Fork the repository or clone directly:
 
-   ```sh
-   git clone https://github.com/lpozo/richpyls.git
-   cd richpyls
-   ```
+    ```sh
+    git clone https://github.com/lpozo/richpyls.git
+    cd richpyls
+    ```
 
-2. **Create and activate a virtual environment**:
+2. Reproduce the development environment:
 
-   ```sh
-   python -m venv .venv
-   source .venv/bin/activate  # On macOS/Linux
-   # or
-   .venv\Scripts\activate     # On Windows
-   ```
+    ```sh
+    uv sync --dev
+    ```
 
-3. **Install development dependencies**:
+3. Set up pre-commit hooks for code quality:
 
-   ```sh
-   uv sync --dev
-   ```
-
-4. **Set up pre-commit hooks** for code quality:
-
-   ```sh
-   uv run pre-commit install
-   ```
+    ```sh
+    uv run pre-commit install
+    ```
 
 ### Running Tests
 
