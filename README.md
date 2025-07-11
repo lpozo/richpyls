@@ -79,10 +79,10 @@ Once installed, you can use the `richpyls` command anywhere in your terminal.
 
    ```sh
    # Using uv (recommended)
-   $ uv sync
+   uv sync
 
    # Or using pip (install Rich and Click manually)
-   $ pip install rich click
+   pip install rich click
    ```
 
 ## Usage
@@ -91,13 +91,13 @@ Once installed, you can use the `richpyls` command anywhere in your terminal.
 
 ```sh
 # List files in current directory
-$ richpyls
+richpyls
 
 # List files in specific directory
-$ richpyls /path/to/directory
+richpyls /path/to/directory
 
 # List multiple files/directories
-$ richpyls file1.txt directory1 file2.txt
+richpyls file1.txt directory1 file2.txt
 ```
 
 ### Command Options
@@ -115,7 +115,7 @@ $ richpyls file1.txt directory1 file2.txt
 
 ```sh
 # Basic listing with Rich icons and colors
-$ richpyls
+richpyls
 📄 README.md
 ⚙️ pyproject.toml
 📁 src
@@ -123,7 +123,7 @@ $ richpyls
 📄 uv.lock
 
 # Long format listing with Rich table
-$ richpyls -l
+richpyls -l
                                      📁 Directory Listing
 ┏━━━━┳━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━
 ┃ T… ┃ Permissio… ┃ Links ┃ Owner     ┃ Group    ┃     Size ┃ Modified     ┃ Name
@@ -136,7 +136,7 @@ $ richpyls -l
 └────┴────────────┴───────┴───────────┴──────────┴──────────┴──────────────┴─────────
 
 # Show hidden files with special emoji
-$ richpyls -a
+richpyls -a
 🫣 .git
 🫣 .gitignore
 🫣 .python-version
@@ -148,7 +148,7 @@ $ richpyls -a
 📄 uv.lock
 
 # Tree format (shows directory structure with Rich styling)
-$ richpyls -t
+richpyls -t
 ├── 📄 README.md
 ├── ⚙️ pyproject.toml
 ├── 📁 src
@@ -161,16 +161,13 @@ $ richpyls -t
 └── 📄 uv.lock
 
 # Tree format with long listing and Rich table
-$ richpyls -tl src
-└── 📁 src
-                                     📁 Directory Listing
-┏━━━━┳━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━
-┃ T… ┃ Permissio… ┃ Links ┃ Owner     ┃ Group    ┃     Size ┃ Modified     ┃ Name
-┡━━━━╇━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━
-│ 📁 │ drwxr-xr-x │     3 │ user      │ staff    │     96B  │ Dec 01 12:00 │ 📁 richpyls
-└────┴────────────┴───────┴───────────┴──────────┴──────────┴──────────────┴─────────
-    ├── 🐍 __init__.py
-    └── 🐍 __main__.py
+richpyls -tl src
+└── drwxr-xr-x  5 leodanispozoramos staff     160B Jul 11 18:34 📁 richpyls
+    ├── drwxr-xr-x  4 leodanispozoramos staff     128B Jul 11 18:34 📁 __pycache__
+    │   ├── -rw-r--r--  1 leodanispozoramos staff     622B Jul 11 18:34 📄 __init__.cpython-313.pyc
+    │   └── -rw-r--r--  1 leodanispozoramos staff   14.8KB Jul 11 18:34 📄 __main__.cpython-313.pyc
+    ├── -rw-r--r--  1 leodanispozoramos staff     452B Jul 11 18:34 🐍 __init__.py
+    └── -rw-r--r--  1 leodanispozoramos staff   12.1KB Jul 11 18:34 🐍 __main__.py
 ```
 
 ## Technologies
@@ -218,32 +215,32 @@ $ richpyls -tl src
 4. Activate the virtual environment:
 
    ```sh
-   $ source .venv/bin/activate  # On macOS/Linux
+   source .venv/bin/activate  # On macOS/Linux
    # or
-   $ .venv\Scripts\activate     # On Windows
+   .venv\Scripts\activate     # On Windows
    ```
 
 ### Running Tests
 
 ```sh
 # Run all tests
-$ uv run python -m pytest
+uv run python -m pytest
 
 # Run tests with verbose output
-$ uv run python -m pytest -v
+uv run python -m pytest -v
 
 # Run tests with coverage
-$ uv run python -m pytest --cov=richpyls
+uv run python -m pytest --cov=richpyls
 ```
 
 ### Type Checking
 
 ```sh
 # Check types with mypy
-$ uv run mypy src/richpyls/
+uv run mypy src/richpyls/
 
 # Check all Python files
-$ uv run mypy .
+uv run mypy .
 ```
 
 ### Code Quality and Formatting
@@ -252,13 +249,13 @@ The project uses automated code quality tools:
 
 ```sh
 # Format code with ruff
-$ uv run ruff format .
+uv run ruff format .
 
 # Lint code with ruff
-$ uv run ruff check . --fix
+uv run ruff check . --fix
 
 # Security scan with bandit
-$ uv run bandit -r src/
+uv run bandit -r src/
 ```
 
 **Pre-commit hooks** automatically run quality checks on every commit. See
@@ -270,16 +267,16 @@ To build the package for distribution:
 
 ```sh
 # Build both wheel and source distribution
-$ uv build
+uv build
 
 # Build only wheel
-$ uv build --wheel
+uv build --wheel
 
 # Build only source distribution
-$ uv build --sdist
+uv build --sdist
 
 # Clean previous builds first
-$ rm -rf dist/ && uv build
+rm -rf dist/ && uv build
 ```
 
 This creates distribution files in the `dist/` directory:
@@ -293,13 +290,13 @@ For manual publishing (though automated publishing is recommended):
 
 ```sh
 # Install publishing dependencies
-$ uv sync --group publish
+uv sync --group publish
 
 # Publish to TestPyPI (for testing)
-$ uv run twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+uv run twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 
 # Publish to PyPI (production)
-$ uv run twine upload dist/*
+uv run twine upload dist/*
 ```
 
 ### Automated Publishing
@@ -308,11 +305,11 @@ The project includes automated PyPI publishing via GitHub Actions:
 
 ```sh
 # Bump version and trigger automated publishing
-$ python bump_version.py patch  # or minor, major
-$ git push origin main  # Triggers automated publishing
+python bump_version.py patch  # or minor, major
+git push origin main  # Triggers automated publishing
 
 # Or use the convenience script that does everything
-$ python bump_version.py patch --push
+python bump_version.py patch --push
 ```
 
 The automated workflow:
