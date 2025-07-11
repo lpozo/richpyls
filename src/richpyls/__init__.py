@@ -5,7 +5,7 @@ ls command, implemented in modern Python with type hints and comprehensive error
 handling.
 """
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 __author__ = "Leodanis Pozo Ramos"
 __email__ = "lpozor78@gmail.com"
 
