@@ -289,7 +289,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ### Leodanis Pozo Ramos
 
-- Email: [your-email@example.com](mailto:your-email@example.com)
+- Email: [lpozor78@gmail.com](mailto:lpozor78@gmail.com)
 - GitHub: [@yourusername](https://github.com/yourusername)
 - LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
 

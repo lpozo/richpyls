@@ -8,9 +8,11 @@ from pathlib import Path
 
 import click
 
+from . import __version__
+
 
 @click.command("pyls", epilog="Thanks for using pyls!")
-@click.version_option("0.1.0")
+@click.version_option(__version__)
 @click.option(
     "-l",
     "long",
@@ -93,7 +95,10 @@ def list_single_file(path_obj: Path, long_format: bool) -> None:
         try:
             file_info: stat_result = path_obj.lstat()
         except OSError as os_error:
-            click.echo(f"ls: cannot access '{path_obj}': {os_error.strerror}", err=True)
+            click.echo(
+                f"ls: cannot access '{path_obj}': {os_error.strerror}",
+                err=True,
+            )
             return
         formatted_info = format_file_info(file_info, path_obj.name)
         click.echo(formatted_info)
