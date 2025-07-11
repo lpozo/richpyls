@@ -318,6 +318,9 @@ def list_directory_tree(
     # Filter hidden files unless show_all is True
     entries = [entry for entry in entries if show_all or not entry.name.startswith(".")]
 
+    # Sort entries: directories first, then files, both alphabetically
+    entries.sort(key=lambda p: (not p.is_dir(), p.name.lower()))
+
     for i, entry_path in enumerate(entries):
         is_last_entry = i == len(entries) - 1
 

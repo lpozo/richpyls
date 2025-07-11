@@ -267,7 +267,8 @@ def test_tree_format(tmp_path, monkeypatch):
     # Check that indentation is working (subdirectory content is indented)
     lines = output.split("\n")
     subdir_files = [line for line in lines if "file3.txt" in line or "nested" in line]
-    assert all(line.startswith("    ") for line in subdir_files if line.strip())
+    # Check for tree indentation characters (│   ) which indicate subdirectory content
+    assert all("│   " in line for line in subdir_files if line.strip())
 
 
 def test_tree_format_with_long(tmp_path, monkeypatch):
@@ -816,3 +817,90 @@ def test_directory_access_permissions(tmp_path, monkeypatch):
     # Check that tree format works with accessible directory
     output = result.output
     assert "accessible_dir" in output or "📁" in output
+
+
+def test_tree_sorting_directories_first(tmp_path, monkeypatch):
+    """Test tree view shows directories first, then files alphabetically."""
+    # Setup directory structure with mixed files and directories
+    monkeypatch.chdir(tmp_path)
+
+    # Create files and directories in non-alphabetical order to test sorting
+    _create_test_structure(tmp_path)
+
+    runner = CliRunner()
+    result = runner.invoke(cli, ["-t"])
+    assert result.exit_code == 0
+    output = result.output
+    lines = [line.strip() for line in output.split("\n") if line.strip()]
+
+    # Find positions and verify sorting
+    positions = _find_entry_positions(lines)
+    _verify_directory_file_order(positions)
+    _verify_alphabetical_order(positions)
+
+
+def _create_test_structure(tmp_path):
+    """Create test directory structure."""
+    (tmp_path / "zebra.txt").write_text("content")  # File
+    (tmp_path / "apple_dir").mkdir()  # Directory
+    (tmp_path / "banana.py").write_text("content")  # File
+    (tmp_path / "zebra_dir").mkdir()  # Directory
+    (tmp_path / "apple.txt").write_text("content")  # File
+    (tmp_path / "banana_dir").mkdir()  # Directory
+
+    # Add content to directories to verify recursive sorting
+    (tmp_path / "apple_dir" / "file2.txt").write_text("content")
+    (tmp_path / "apple_dir" / "subdir1").mkdir()
+    (tmp_path / "apple_dir" / "file1.txt").write_text("content")
+
+
+def _find_entry_positions(lines):
+    """Find the position of each entry in the output."""
+    positions = {}
+    entries = [
+        "apple_dir",
+        "banana_dir",
+        "zebra_dir",
+        "apple.txt",
+        "banana.py",
+        "zebra.txt",
+    ]
+
+    for i, line in enumerate(lines):
+        for entry in entries:
+            if entry in line and entry not in positions:
+                positions[entry] = i
+                break
+
+    return positions
+
+
+def _verify_directory_file_order(positions):
+    """Verify directories come before files."""
+    directory_positions = [
+        positions["apple_dir"],
+        positions["banana_dir"],
+        positions["zebra_dir"],
+    ]
+    file_positions = [
+        positions["apple.txt"],
+        positions["banana.py"],
+        positions["zebra.txt"],
+    ]
+
+    assert max(directory_positions) < min(
+        file_positions
+    ), "Directories should appear before files"
+
+
+def _verify_alphabetical_order(positions):
+    """Verify alphabetical order within directories and files."""
+    # Verify alphabetical order within directories
+    assert (
+        positions["apple_dir"] < positions["banana_dir"] < positions["zebra_dir"]
+    ), "Directories should be alphabetically sorted"
+
+    # Verify alphabetical order within files
+    assert (
+        positions["apple.txt"] < positions["banana.py"] < positions["zebra.txt"]
+    ), "Files should be alphabetically sorted"
