@@ -166,12 +166,12 @@ richpyls -t
 
 # Tree format with long listing and Rich table
 richpyls -tl src
-└── drwxr-xr-x  5 leodanispozoramos staff     160B Jul 11 18:34 📁 richpyls
-    ├── drwxr-xr-x  4 leodanispozoramos staff     128B Jul 11 18:34 📁 __pycache__
-    │   ├── -rw-r--r--  1 leodanispozoramos staff     622B Jul 11 18:34 📄 __init__.cpython-313.pyc
-    │   └── -rw-r--r--  1 leodanispozoramos staff   14.8KB Jul 11 18:34 📄 __main__.cpython-313.pyc
-    ├── -rw-r--r--  1 leodanispozoramos staff     452B Jul 11 18:34 🐍 __init__.py
-    └── -rw-r--r--  1 leodanispozoramos staff   12.1KB Jul 11 18:34 🐍 __main__.py
+└── drwxr-xr-x  5 user staff     160B Jul 11 18:34 📁 richpyls
+    ├── drwxr-xr-x  4 user staff     128B Jul 11 18:34 📁 __pycache__
+    │   ├── -rw-r--r--  1 user staff     622B Jul 11 18:34 📄 __init__.cpython-313.pyc
+    │   └── -rw-r--r--  1 user staff   14.8KB Jul 11 18:34 📄 __main__.cpython-313.pyc
+    ├── -rw-r--r--  1 user staff     452B Jul 11 18:34 🐍 __init__.py
+    └── -rw-r--r--  1 user staff   12.1KB Jul 11 18:34 🐍 __main__.py
 ```
 
 ## Technologies
