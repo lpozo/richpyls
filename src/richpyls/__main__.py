@@ -158,6 +158,89 @@ def create_long_listing_table(entries: list[Path]) -> Table:
     return table
 
 
+def get_directory_size(path: Path) -> int:
+    """Calculate the total size of a directory and its contents."""
+    if not path.is_dir():
+        return 0
+
+    total_size = 0
+    try:
+        for item in path.rglob("*"):
+            try:
+                if item.is_file():
+                    total_size += item.stat().st_size
+            except (OSError, PermissionError):
+                # Skip files we can't access
+                continue
+    except (OSError, PermissionError):
+        # Skip directories we can't access
+        pass
+
+    return total_size
+
+
+def create_size_sorted_table(entries: list[Path], limit: int) -> Table:
+    """Create a Rich table for size-sorted listing."""
+    table = Table(
+        title=f"📊 Top {limit} Files/Directories by Size",
+        show_header=True,
+        header_style="bold cyan",
+        border_style="bright_black",
+        row_styles=["", "dim"],
+        expand=True,
+    )
+
+    # Add columns
+    table.add_column("Type", style="white", width=6, justify="center")
+    table.add_column("Name", style="white", min_width=20)
+    table.add_column("Size", style="magenta", width=10, justify="right")
+
+    # Get file sizes and sort by size (descending)
+    entries_with_size = []
+    for entry_path in entries:
+        try:
+            if entry_path.is_dir():
+                size = get_directory_size(entry_path)
+                file_type = "DIR"
+            else:
+                size = entry_path.stat().st_size
+                file_type = "FILE"
+
+            entries_with_size.append((entry_path, size, file_type))
+        except OSError as os_error:
+            # Print error message for files we can't access
+            error_console.print(
+                f"[red]ls: cannot access '{entry_path}': {os_error.strerror}[/red]"
+            )
+            continue
+
+    # Sort by size (descending) and take top N
+    entries_with_size.sort(key=lambda x: x[1], reverse=True)
+    top_entries = entries_with_size[:limit]
+
+    # Add rows to table
+    for entry_path, size, file_type in top_entries:
+        # Get file styling and icon
+        file_style, icon = get_file_style_and_icon(entry_path)
+        size_human = format_size_human_readable(size)
+
+        # Create filename with icon and styling
+        filename_text = Text()
+        filename_text.append(f"{icon} ", style="white")
+        filename_text.append(entry_path.name, style=file_style)
+
+        # Style the type column
+        type_style = "bold blue" if file_type == "DIR" else "white"
+
+        table.add_row(
+            Text(file_type, style=type_style),
+            filename_text,
+            size_human,
+        )
+
+    return table
+
+
 @click.command("richpyls", epilog="Thanks for using richpyls!")
 @click.version_option(__version__)
 @click.option(
@@ -178,6 +261,12 @@ def create_long_listing_table(entries: list[Path]) -> Table:
     is_flag=True,
     help="display directories in a tree-like format",
 )
+@click.option(
+    "-s",
+    "sort_by_size",
+    type=int,
+    help="show top N files/directories sorted by size (descending)",
+)
 @click.argument(
     "paths",
     nargs=-1,
@@ -187,11 +276,13 @@ def cli(
     long: bool,
     show_all: bool,
     tree: bool,
+    sort_by_size: int | None,
     paths: tuple[str, ...],
 ) -> None:
     """List information about the FILEs (the current directory by default).
 
-    Supports long format listing (-l), hidden files (-a), and tree view (-t).
+    Supports long format listing (-l), hidden files (-a), tree view (-t),
+    and size-sorted listing (-s N) to show top N files by size.
     """
     if not paths:
         paths_list: list[str] = ["."]
@@ -209,6 +300,8 @@ def cli(
         if path_obj.is_dir():
             if tree:
                 list_directory_tree(path_obj, show_all, long)
+            elif sort_by_size is not None:
+                list_directory_by_size(path_obj, show_all, sort_by_size)
             else:
                 list_directory_entries(path_obj, show_all, long)
         else:
@@ -383,6 +476,24 @@ def list_directory_tree(
         # Recursively display subdirectories
         if entry_path.is_dir():
             list_directory_tree(entry_path, show_all, long_format, next_prefix)
+
+
+def list_directory_by_size(path_obj: Path, show_all: bool, limit: int) -> None:
+    """List entries in a directory sorted by size."""
+    try:
+        entries: list[Path] = sorted(path_obj.iterdir())
+    except OSError as os_error:
+        error_console.print(
+            f"[red]ls: cannot access '{path_obj}': {os_error.strerror}[/red]"
+        )
+        return
+
+    # Filter hidden files unless show_all is True
+    entries = [entry for entry in entries if show_all or not entry.name.startswith(".")]
+
+    # Create and display the size-sorted table
+    table = create_size_sorted_table(entries, limit)
+    console.print(table)
 
 
 if __name__ == "__main__":

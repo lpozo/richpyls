@@ -888,19 +888,134 @@ def _verify_directory_file_order(positions):
         positions["zebra.txt"],
     ]
 
-    assert max(directory_positions) < min(file_positions), (
-        "Directories should appear before files"
-    )
+    assert max(directory_positions) < min(
+        file_positions
+    ), "Directories should appear before files"
 
 
 def _verify_alphabetical_order(positions):
     """Verify alphabetical order within directories and files."""
     # Verify alphabetical order within directories
-    assert positions["apple_dir"] < positions["banana_dir"] < positions["zebra_dir"], (
-        "Directories should be alphabetically sorted"
-    )
+    assert (
+        positions["apple_dir"] < positions["banana_dir"] < positions["zebra_dir"]
+    ), "Directories should be alphabetically sorted"
 
     # Verify alphabetical order within files
-    assert positions["apple.txt"] < positions["banana.py"] < positions["zebra.txt"], (
-        "Files should be alphabetically sorted"
-    )
+    assert (
+        positions["apple.txt"] < positions["banana.py"] < positions["zebra.txt"]
+    ), "Files should be alphabetically sorted"
+
+
+def test_sort_by_size_basic(tmp_path, monkeypatch):
+    """Test basic sort by size functionality."""
+    monkeypatch.chdir(tmp_path)
+
+    # Create files with different sizes
+    (tmp_path / "small.txt").write_text("x")  # 1 byte
+    (tmp_path / "medium.txt").write_text("x" * 100)  # 100 bytes
+    (tmp_path / "large.txt").write_text("x" * 1000)  # 1000 bytes
+
+    # Create a directory with some content
+    subdir = tmp_path / "testdir"
+    subdir.mkdir()
+    (subdir / "content.txt").write_text("x" * 500)  # 500 bytes in subdir
+
+    runner = CliRunner()
+    result = runner.invoke(cli, ["-s", "3"])
+    assert result.exit_code == 0
+
+    # Check that output is in table format and contains size information
+    output_lines = result.output.splitlines()
+    assert "📊 Top 3 Files/Directories by Size" in output_lines[0]
+    assert "large.txt" in result.output
+    assert "medium.txt" in result.output
+    assert "testdir" in result.output
+
+
+def test_sort_by_size_with_hidden_files(tmp_path, monkeypatch):
+    """Test sort by size with hidden files included."""
+    monkeypatch.chdir(tmp_path)
+
+    # Create visible and hidden files
+    (tmp_path / "visible.txt").write_text("x" * 100)
+    (tmp_path / ".hidden_large").write_text("x" * 2000)  # Largest file
+    (tmp_path / "regular.txt").write_text("x" * 50)
+
+    runner = CliRunner()
+
+    # Test without -a flag (should not include hidden files)
+    result = runner.invoke(cli, ["-s", "5"])
+    assert result.exit_code == 0
+    assert ".hidden_large" not in result.output
+    assert "visible.txt" in result.output
+
+    # Test with -a flag (should include hidden files)
+    result = runner.invoke(cli, ["-s", "5", "-a"])
+    assert result.exit_code == 0
+    assert ".hidden_large" in result.output
+    assert "visible.txt" in result.output
+
+
+def test_sort_by_size_limit(tmp_path, monkeypatch):
+    """Test that sort by size respects the limit parameter."""
+    monkeypatch.chdir(tmp_path)
+
+    # Create more files than we'll request
+    for i in range(10):
+        (tmp_path / f"file_{i:02d}.txt").write_text("x" * (i * 100))
+
+    runner = CliRunner()
+    result = runner.invoke(cli, ["-s", "3"])
+    assert result.exit_code == 0
+
+    # Should only show top 3 files
+    output_lines = [line for line in result.output.splitlines() if "file_" in line]
+    assert len(output_lines) == 3
+
+    # Check that the largest files are shown (file_09, file_08, file_07)
+    assert "file_09.txt" in result.output
+    assert "file_08.txt" in result.output
+    assert "file_07.txt" in result.output
+
+    # Check that smaller files are not shown
+    assert "file_00.txt" not in result.output
+    assert "file_01.txt" not in result.output
+
+
+def test_sort_by_size_mixed_types(tmp_path, monkeypatch):
+    """Test sort by size with mixed files and directories."""
+    monkeypatch.chdir(tmp_path)
+
+    # Create a small file
+    (tmp_path / "small_file.txt").write_text("x" * 10)
+
+    # Create a large directory with content
+    large_dir = tmp_path / "large_directory"
+    large_dir.mkdir()
+    (large_dir / "big_file.txt").write_text("x" * 5000)
+
+    # Create a medium file
+    (tmp_path / "medium_file.txt").write_text("x" * 1000)
+
+    runner = CliRunner()
+    result = runner.invoke(cli, ["-s", "3"])
+    assert result.exit_code == 0
+
+    # Check that both files and directories are included
+    assert "DIR" in result.output  # Directory type
+    assert "FILE" in result.output  # File type
+    assert "large_directory" in result.output
+    assert "medium_file.txt" in result.output
+
+
+def test_sort_by_size_error_handling(tmp_path, monkeypatch):
+    """Test sort by size with inaccessible files."""
+    monkeypatch.chdir(tmp_path)
+
+    # Create some regular files
+    (tmp_path / "accessible.txt").write_text("x" * 100)
+
+    runner = CliRunner()
+    result = runner.invoke(cli, ["-s", "5"])
+    assert result.exit_code == 0
+    assert "accessible.txt" in result.output
